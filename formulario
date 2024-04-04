@@ -1,0 +1,46 @@
+@{
+    ViewBag.Title = "Formulario HTML";
+}
+<div class="container text-center">
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+    <!-- <h2>@ViewBag.Alert</h2> -->
+    @{
+        if (ViewBag.Alert != "" && ViewBag.Alert != null)
+        {
+            <div class="alert alert-@ViewBag.AlertType" role="alert">
+                @ViewBag.Alert
+            </div>
+        }
+    }
+    <h5>Todos los elementos son requeridos</h5>
+
+    <hr />
+
+    <div class="row d-flex justify-content-center">
+        <form method="post">
+
+            <div class="col-md-4 offset-md-4">
+                <label for="nombre">Ingrese su nombre *</label>
+                <input type="text" name="nombre" value="" class="form-control" required />
+
+                <label for="correo">Ingrese su correo electrónico *</label>
+                <input type="email" name="correo" value="" class="form-control" required />
+            </div>
+
+            <div class="col-md-4 offset-md-4">
+                <label for="contrasena_r">Ingrese su contraseña *</label>
+                <input type="password" name="contrasena" value="" class="form-control" required />
+
+                <label for="contrasena">Repita su contraseña *</label>
+                <input type="password" name="contrasena_r" value="" class="form-control" required />
+            </div>
+
+            <div class="col-md-4 offset-md-4 mt-3">
+                <button type="submit" class="btn btn-success">
+                    Registrarme
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
