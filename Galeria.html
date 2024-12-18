@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel con imágenes</title>
+    <link rel=" icon" href="img/predator.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+       
+               
+<style>
+    body {
+        background-image: url('https://wallpaperwaifu.com/wp-content/uploads/2023/04/norse-church-assassins-creed-valhalla-thumb.jpg');
+        background-size: cover;
+    }
+</style>
+
+
+<div class="container">
+    <br>
+    <div id="theCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicadores -->
+        <ol class="carousel-indicators">
+            <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#theCarousel" data-slide-to="1"></li>
+            <li data-target="#theCarousel" data-slide-to="2"></li>
+            <li data-target="#theCarousel" data-slide-to="3"></li>
+            <li data-target="#theCarousel" data-slide-to="4"></li>
+            <li data-target="#theCarousel" data-slide-to="5"></li>
+
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="img/2024057215600.jpg" alt="w-100">
+                <div class="carousel-caption d-none d-md-block">
+                    <h4>Assassin's Creed Valhalla</h4>
+                    <p></p>
+                </div>
+            </div>
+
+
+
+            <div class="item">
+                <img src="img/2024057215723.jpg" alt="w-100">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Fotografía</h3>
+                    <p>Concurso</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="img/2024057215809.jpg" alt="w-100">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>DoArt Pintura</h3>
+                    <p></p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="img/screenshot_14313.png" alt="w-100">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3></h3>
+                    <p>Curso</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="img/screenshot_155437.png" alt="w-120">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>The Witcher III</h3>
+                    <p></p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="img/dassault.jpg" alt="w-120">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>eurofighter typhoon</h3>
+                    <p></p>
+                </div>
+            </div>
+
+            <a class="left carousel-control" href="#theCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">anterior</span>
+            </a>
+            <a class="right carousel-control" href="#theCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">siguiente</span>
+            </a>
+        </div>
+    </div>
+    </body>
+</html>
