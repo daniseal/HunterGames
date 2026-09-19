@@ -1087,7 +1087,12 @@ img {
     gap: 0.6rem;
   }
 
-  .game-thumbnail  { display: none; }
+  .game-thumbnail { 
+    display: block; 
+    width: 60px; 
+    height: auto; 
+    margin-bottom: 0.5rem; 
+  }
   .section-title   { font-size: 1.1rem; }
   .sales-bar       { display: none; }
 
