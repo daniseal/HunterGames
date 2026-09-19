@@ -728,6 +728,7 @@
   <!-- Módulos Core E-commerce y Repositorio -->
   <script src="js/ecommerce-core.js"></script>
   <script src="js/games-repository.js"></script>
+  <script src="js/auth-system.js"></script>
 
   <!-- Inicialización específica de página -->
   <script>
@@ -788,8 +789,12 @@
           try {
             sessionStorage.clear();
             const cart = localStorage.getItem('hunter_games_cart');
+            const users = localStorage.getItem('hunter_registered_users');
+            const activeUser = localStorage.getItem('hunter_active_user');
             localStorage.clear();
             if (cart) localStorage.setItem('hunter_games_cart', cart);
+            if (users) localStorage.setItem('hunter_registered_users', users);
+            if (activeUser) localStorage.setItem('hunter_active_user', activeUser);
             if ('caches' in window) {
               const keys = await caches.keys();
               await Promise.all(keys.map(k => caches.delete(k)));

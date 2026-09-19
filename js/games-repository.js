@@ -328,14 +328,15 @@ class GameRepository {
       }
     }
 
-    // 5. Predicado de Búsqueda de Texto
+    // 5. Predicado de Búsqueda de Texto (Nombre, Género, Año, Plataforma, Descripción)
     if (query && query.trim().length > 0) {
       const q = query.trim().toLowerCase();
       predicates.push(g =>
         g.title.toLowerCase().includes(q) ||
         g.desc.toLowerCase().includes(q) ||
-        g.genres.some(gen => gen.includes(q)) ||
-        g.platforms.some(p => p.includes(q))
+        g.year.toString().includes(q) ||
+        g.genres.some(gen => gen.toLowerCase().includes(q)) ||
+        g.platforms.some(p => p.toLowerCase().includes(q))
       );
     }
 
@@ -693,6 +694,22 @@ class CatalogController {
    */
   init() {
     this._bindEvents();
+
+    // Comprobar si hay parámetro de búsqueda global en la URL (?search=...)
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const searchParam = urlParams.get('search');
+      if (searchParam) {
+        const searchInput = document.getElementById('liveSearchInput');
+        if (searchInput) searchInput.value = searchParam;
+        this._activeCriteria.query = searchParam.trim();
+        setTimeout(() => {
+          const section = document.getElementById('seccion-generos');
+          if (section) section.scrollIntoView({ behavior: 'smooth' });
+        }, 350);
+      }
+    } catch (e) {}
+
     this.render();
   }
 
@@ -750,8 +767,20 @@ class CatalogController {
       });
     }
 
-    // 6. Buscador en vivo con debounce
+    // 6. Buscador en vivo por Nombre, Género o Año con debounce y botón
     const searchInput = document.getElementById('liveSearchInput');
+    const searchBtn = document.getElementById('liveSearchBtn');
+
+    const triggerSearch = () => {
+      if (!searchInput) return;
+      this._activeCriteria.query = searchInput.value.trim();
+      this.render();
+      const section = document.getElementById('seccion-generos');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
     if (searchInput) {
       let debounceTimer = null;
       searchInput.addEventListener('input', (e) => {
@@ -760,6 +789,20 @@ class CatalogController {
           this._activeCriteria.query = e.target.value.trim();
           this.render();
         }, 150);
+      });
+
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          triggerSearch();
+        }
+      });
+    }
+
+    if (searchBtn) {
+      searchBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        triggerSearch();
       });
     }
 

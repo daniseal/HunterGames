@@ -40,3 +40,192 @@
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* ================================================
+   SISTEMA DE AUTENTICACIÓN & PORTAL GAMER
+   ================================================ */
+
+/* Modo Dashboard Expandido */
+.login-card.dashboard-mode {
+  max-width: 1100px;
+  width: 100%;
+  padding: 2.2rem;
+  transition: max-width 0.4s ease;
+}
+
+/* Selector de Pestañas Iniciar Sesión / Registro */
+.auth-tab-nav {
+  display: flex;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.auth-tab-btn {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--hg-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-align: center;
+}
+
+.auth-tab-btn:hover {
+  color: #fff;
+}
+
+.auth-tab-btn.active {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(123, 47, 255, 0.6), rgba(0, 245, 212, 0.25));
+  box-shadow: 0 0 15px rgba(123, 47, 255, 0.35);
+  border: 1px solid rgba(0, 245, 212, 0.4);
+}
+
+/* Lista de Verificación en Tiempo Real de Contraseña */
+.pw-checklist {
+  background: rgba(10, 10, 15, 0.65);
+  border: 1px solid rgba(123, 47, 255, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  margin-top: 0.6rem;
+  font-size: 0.76rem;
+}
+
+.pw-checklist-title {
+  font-weight: 700;
+  color: var(--hg-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.4rem;
+}
+
+.pw-rule-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--hg-text-muted);
+  margin-bottom: 0.25rem;
+  transition: color 0.25s ease;
+}
+
+.pw-rule-item i {
+  font-size: 0.9rem;
+}
+
+.pw-rule-item.rule-valid {
+  color: var(--hg-secondary);
+}
+
+.pw-rule-item.rule-valid i {
+  color: var(--hg-secondary);
+}
+
+.pw-rule-item.rule-invalid {
+  color: #ff7070;
+}
+
+/* Dashboard del Gamer */
+.gamer-banner {
+  background: linear-gradient(135deg, rgba(123, 47, 255, 0.25), rgba(0, 245, 212, 0.12));
+  border: 1px solid var(--hg-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.gamer-banner::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(0, 245, 212, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.gamer-avatar-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--hg-primary), var(--hg-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  border: 2px solid var(--hg-secondary);
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.4);
+}
+
+.library-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all var(--transition);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.library-card:hover {
+  border-color: var(--hg-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.library-card-img {
+  height: 140px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.cd-key-badge {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px dashed var(--hg-secondary);
+  border-radius: 4px;
+  padding: 0.35rem 0.6rem;
+  font-family: monospace;
+  font-size: 0.82rem;
+  color: var(--hg-secondary);
+  letter-spacing: 1px;
+}
+
+.coupon-ticket {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.12), rgba(123, 47, 255, 0.15));
+  border: 1px dashed var(--hg-accent);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  transition: all var(--transition);
+}
+
+.coupon-ticket:hover {
+  border-color: #fff;
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+}
+
+.announcement-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--hg-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all var(--transition);
+}
+
+.announcement-box:hover {
+  border-color: var(--hg-secondary);
+  box-shadow: 0 0 25px rgba(0, 245, 212, 0.2);
+}
+

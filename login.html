@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Hunter Games — Iniciar sesión o crear cuenta en el portal de videojuegos.">
-  <title>Hunter Games — Iniciar Sesión</title>
+  <meta name="description" content="Hunter Games — Iniciar sesión o crear cuenta gamer para acceder a tu catálogo de juegos adquiridos, descuentos exclusivos y próximos lanzamientos.">
+  <title>Hunter Games — Portal Gamer & Mi Cuenta</title>
 
   <!-- Favicon -->
   <link rel="icon" href="img/predator.ico">
@@ -20,7 +20,7 @@
 <body>
 
   <!-- ============================================
-       NAVBAR (100% Limpio y Unificado)
+       NAVBAR (100% Limpio, Unificado y Sincronizado)
        ============================================ -->
   <nav class="navbar navbar-expand-lg fixed-top hg-navbar">
     <div class="container">
@@ -90,10 +90,11 @@
 
         </ul>
 
+        <!-- Buscador Global por Nombre, Género o Año -->
         <form class="d-flex gap-2" role="search" onsubmit="return false;">
           <input class="form-control search-input" type="search"
-                 placeholder="Buscar juego…" aria-label="Buscar">
-          <button class="btn-search" type="submit">
+                 placeholder="Buscar por juego, género, año..." aria-label="Buscar">
+          <button class="btn-search" type="submit" title="Buscar">
             <i class="bi bi-search"></i>
           </button>
         </form>
@@ -102,98 +103,334 @@
   </nav>
 
   <!-- ============================================
-       FORMULARIO DE ACCESO (Gaming Glassmorphism)
+       CONTENIDO DINÁMICO: ACCESO / REGISTRO / DASHBOARD
        ============================================ -->
   <div class="page-content">
     <main class="login-page">
 
-      <div class="login-card">
+      <div class="login-card" id="mainAuthCard">
 
-        <!-- Encabezado del Formulario -->
-        <header class="text-center mb-4">
-          <span class="login-icon">🎮</span>
-          <h1 class="login-title">Acceso Gamer</h1>
-          <p class="login-subtitle">Inicia sesión para guardar tus favoritos y descargas</p>
-        </header>
+        <!-- VISTA DE LOGIN / REGISTRO (Si no hay sesión activa) -->
+        <div id="authGuestView">
 
-        <!-- Formulario con Validación Segura -->
-        <form id="loginForm" novalidate autocomplete="on">
+          <!-- Encabezado -->
+          <header class="text-center mb-3">
+            <span class="login-icon">🎮</span>
+            <h1 class="login-title" id="authViewTitle">Portal Hunter Games</h1>
+            <p class="login-subtitle" id="authViewSubtitle">Inicia sesión o crea tu cuenta gamer para acceder a tu biblioteca y promociones</p>
+          </header>
 
-          <!-- Campo Email -->
-          <div class="mb-3">
-            <label class="field-label" for="email">
-              <i class="bi bi-envelope me-1"></i>Correo Electrónico
-            </label>
-            <input
-              class="field-input"
-              type="email"
-              id="email"
-              name="email"
-              placeholder="gamer@huntergames.com"
-              autocomplete="email"
-              required
-            >
-            <p class="field-feedback" id="emailFeedback" role="alert" aria-live="polite"></p>
+          <!-- Pestañas de Navegación Iniciar Sesión / Registro -->
+          <div class="auth-tab-nav">
+            <button type="button" class="auth-tab-btn active" id="tabBtnLogin">
+              <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión
+            </button>
+            <button type="button" class="auth-tab-btn" id="tabBtnRegister">
+              <i class="bi bi-person-plus-fill me-1"></i>Crear Cuenta Gamer
+            </button>
           </div>
 
-          <!-- Campo Contraseña con Toggle -->
-          <div class="mb-3">
-            <label class="field-label" for="password">
-              <i class="bi bi-lock me-1"></i>Contraseña
-            </label>
-            <div style="position: relative;">
+          <!-- Mensaje de Feedback Global -->
+          <div id="globalAuthAlert" class="alert d-none py-2 px-3 mb-3 text-center" style="font-size: 0.85rem;" role="alert"></div>
+
+          <!-- ==========================================
+               FORMULARIO 1: INICIAR SESIÓN
+               ========================================== -->
+          <form id="loginForm" novalidate autocomplete="on">
+
+            <!-- Correo -->
+            <div class="mb-3">
+              <label class="field-label" for="loginEmail">
+                <i class="bi bi-envelope me-1"></i>Correo Electrónico
+              </label>
+              <input
+                class="field-input"
+                type="email"
+                id="loginEmail"
+                name="email"
+                placeholder="ejemplo@gamer.com"
+                autocomplete="email"
+                required
+              >
+              <p class="field-feedback" id="loginEmailFeedback" role="alert" aria-live="polite"></p>
+            </div>
+
+            <!-- Contraseña con Toggle -->
+            <div class="mb-3">
+              <label class="field-label" for="loginPassword">
+                <i class="bi bi-lock me-1"></i>Contraseña
+              </label>
+              <div style="position: relative;">
+                <input
+                  class="field-input"
+                  type="password"
+                  id="loginPassword"
+                  name="password"
+                  placeholder="Tu contraseña secreta"
+                  autocomplete="current-password"
+                  required
+                  style="padding-right: 2.8rem;"
+                >
+                <button type="button" class="toggle-password-btn" data-target="loginPassword"
+                        style="position:absolute; right:0.75rem; top:50%; transform:translateY(-50%);
+                               background:none; border:none; color:var(--hg-text-muted); cursor:pointer;
+                               padding:0; font-size:1rem; transition:color 0.3s;"
+                        aria-label="Mostrar contraseña">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+              <p class="field-feedback" id="loginPasswordFeedback" role="alert" aria-live="polite"></p>
+            </div>
+
+            <!-- Recordarme & Olvidé contraseña -->
+            <div class="d-flex justify-content-between align-items-center mb-3"
+                 style="font-size: 0.85rem; color: var(--hg-text-muted);">
+              <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                <input type="checkbox" id="loginRemember" name="remember" checked
+                       style="accent-color: var(--hg-primary);">
+                Recordarme en este equipo
+              </label>
+              <a href="#" id="linkForgotPw" style="color: var(--hg-secondary); text-decoration:none; font-size:0.82rem;">
+                ¿Olvidaste tu clave?
+              </a>
+            </div>
+
+            <!-- Botón Submit -->
+            <button type="submit" class="btn-login" id="btnLoginSubmit">
+              <i class="bi bi-box-arrow-in-right me-2"></i>Entrar al Portal Gamer
+            </button>
+
+            <div class="login-divider">o</div>
+
+            <p style="text-align:center; font-size:0.85rem; color: var(--hg-text-muted); margin-bottom: 0;">
+              ¿Aún no tienes cuenta?
+              <a href="#" id="linkGoToRegister" style="color: var(--hg-secondary); text-decoration:none; font-weight:600;">
+                Crear cuenta gratuita ahora
+              </a>
+            </p>
+
+          </form>
+
+          <!-- ==========================================
+               FORMULARIO 2: REGISTRO CON VALIDACIÓN ESTRICTA
+               ========================================== -->
+          <form id="registerForm" class="d-none" novalidate autocomplete="on">
+
+            <!-- Nombre de Gamer -->
+            <div class="mb-3">
+              <label class="field-label" for="regUsername">
+                <i class="bi bi-person-badge me-1"></i>Nombre Gamer / GamerTag
+              </label>
+              <input
+                class="field-input"
+                type="text"
+                id="regUsername"
+                name="username"
+                placeholder="Ej. ShadowHunter, DragonSlayer"
+                autocomplete="nickname"
+                required
+              >
+              <p class="field-feedback" id="regUsernameFeedback" role="alert" aria-live="polite"></p>
+            </div>
+
+            <!-- Correo Electrónico Real (Sin Espacios) -->
+            <div class="mb-3">
+              <label class="field-label" for="regEmail">
+                <i class="bi bi-envelope-at me-1"></i>Correo Electrónico Real (Sin espacios)
+              </label>
+              <input
+                class="field-input"
+                type="email"
+                id="regEmail"
+                name="email"
+                placeholder="usuario@dominio.com"
+                autocomplete="email"
+                required
+              >
+              <p class="field-feedback" id="regEmailFeedback" role="alert" aria-live="polite"></p>
+            </div>
+
+            <!-- Contraseña Estricta: 8 a 12 caracteres, Mayúscula, Especiales, Sin Espacios -->
+            <div class="mb-3">
+              <label class="field-label" for="regPassword">
+                <i class="bi bi-shield-lock me-1"></i>Contraseña Segura (8 a 12 caracteres)
+              </label>
+              <div style="position: relative;">
+                <input
+                  class="field-input"
+                  type="password"
+                  id="regPassword"
+                  name="password"
+                  placeholder="Ej: Hunter2026@"
+                  maxlength="12"
+                  autocomplete="new-password"
+                  required
+                  style="padding-right: 2.8rem;"
+                >
+                <button type="button" class="toggle-password-btn" data-target="regPassword"
+                        style="position:absolute; right:0.75rem; top:50%; transform:translateY(-50%);
+                               background:none; border:none; color:var(--hg-text-muted); cursor:pointer;
+                               padding:0; font-size:1rem; transition:color 0.3s;"
+                        aria-label="Mostrar contraseña">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+
+              <!-- Lista de Verificación en Tiempo Real de Contraseña -->
+              <div class="pw-checklist">
+                <div class="pw-checklist-title">
+                  <i class="bi bi-shield-check me-1"></i>Requisitos de Seguridad de la Clave:
+                </div>
+                <div class="pw-rule-item" id="ruleLength">
+                  <i class="bi bi-x-circle text-danger"></i>
+                  <span>Entre 8 y 12 caracteres</span>
+                </div>
+                <div class="pw-rule-item" id="ruleUpper">
+                  <i class="bi bi-x-circle text-danger"></i>
+                  <span>Al menos una letra MAYÚSCULA (A-Z)</span>
+                </div>
+                <div class="pw-rule-item" id="ruleSpecial">
+                  <i class="bi bi-x-circle text-danger"></i>
+                  <span>Al menos un carácter especial (!@#$%*&amp;...)</span>
+                </div>
+                <div class="pw-rule-item" id="ruleSpaces">
+                  <i class="bi bi-check-circle text-success"></i>
+                  <span>Sin espacios en blanco</span>
+                </div>
+              </div>
+
+              <p class="field-feedback" id="regPasswordFeedback" role="alert" aria-live="polite"></p>
+            </div>
+
+            <!-- Confirmación de Contraseña -->
+            <div class="mb-3">
+              <label class="field-label" for="regPasswordConfirm">
+                <i class="bi bi-check2-circle me-1"></i>Confirmar Contraseña
+              </label>
               <input
                 class="field-input"
                 type="password"
-                id="password"
-                name="password"
-                placeholder="Mínimo 8 caracteres"
-                autocomplete="current-password"
+                id="regPasswordConfirm"
+                name="passwordConfirm"
+                placeholder="Repite tu contraseña"
+                autocomplete="new-password"
                 required
-                style="padding-right: 2.8rem;"
               >
-              <button type="button" id="togglePassword"
-                      style="position:absolute; right:0.75rem; top:50%; transform:translateY(-50%);
-                             background:none; border:none; color:var(--hg-text-muted); cursor:pointer;
-                             padding:0; font-size:1rem; transition:color 0.3s;"
-                      aria-label="Mostrar contraseña">
-                <i class="bi bi-eye" id="toggleIcon"></i>
+              <p class="field-feedback" id="regPasswordConfirmFeedback" role="alert" aria-live="polite"></p>
+            </div>
+
+            <!-- Checkbox Beneficios & Anuncios -->
+            <div class="mb-3" style="font-size: 0.82rem; color: var(--hg-text-muted);">
+              <label style="display:flex; align-items:flex-start; gap:0.5rem; cursor:pointer;">
+                <input type="checkbox" id="regNewsletter" name="newsletter" checked
+                       style="accent-color: var(--hg-primary); margin-top:3px;">
+                <span>Deseo recibir anuncios de próximos videojuegos, claves de bienvenida y cupones de descuento exclusivos.</span>
+              </label>
+            </div>
+
+            <!-- Botón Submit Registro -->
+            <button type="submit" class="btn-login" id="btnRegisterSubmit">
+              <i class="bi bi-gift-fill me-2"></i>Crear Cuenta &amp; Reclamar Juego de Bienvenida
+            </button>
+
+            <div class="login-divider">o</div>
+
+            <p style="text-align:center; font-size:0.85rem; color: var(--hg-text-muted); margin-bottom: 0;">
+              ¿Ya tienes una cuenta registrada?
+              <a href="#" id="linkGoToLogin" style="color: var(--hg-secondary); text-decoration:none; font-weight:600;">
+                Iniciar Sesión
+              </a>
+            </p>
+
+          </form>
+
+        </div><!-- /authGuestView -->
+
+
+        <!-- ============================================
+             VISTA 2: DASHBOARD GAMER (Usuario Conectado)
+             ============================================ -->
+        <div id="authDashboardView" class="d-none">
+
+          <!-- Banner del Gamer -->
+          <div class="gamer-banner d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div class="d-flex align-items-center gap-3">
+              <div class="gamer-avatar-box">
+                <i class="bi bi-controller"></i>
+              </div>
+              <div>
+                <div class="d-flex align-items-center gap-2">
+                  <h2 class="text-white mb-0" style="font-family: var(--font-heading); font-size: 1.4rem;" id="dashUsername">Gamer</h2>
+                  <span class="badge" style="background: rgba(0, 245, 212, 0.2); color: var(--hg-secondary); border: 1px solid var(--hg-secondary); font-size: 0.7rem;">
+                    <i class="bi bi-patch-check-fill me-1"></i>Verificado
+                  </span>
+                  <span class="badge" style="background: rgba(123, 47, 255, 0.3); color: #fff; border: 1px solid var(--hg-primary); font-size: 0.7rem;">
+                    NIVEL VIP
+                  </span>
+                </div>
+                <p class="text-muted-hg mb-0" style="font-size: 0.85rem;">
+                  <i class="bi bi-envelope me-1"></i><span id="dashEmail">correo@gamer.com</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="d-flex gap-2">
+              <a href="index.html" class="btn btn-sm btn-outline-light d-flex align-items-center gap-1">
+                <i class="bi bi-shop"></i> Ir a la Tienda
+              </a>
+              <button type="button" class="btn btn-sm btn-outline-danger d-flex align-items-center gap-1" id="btnLogout">
+                <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
               </button>
             </div>
-            <p class="field-feedback" id="passwordFeedback" role="alert" aria-live="polite"></p>
           </div>
 
-          <!-- Recordarme & Olvidé mi contraseña -->
-          <div class="d-flex justify-content-between align-items-center mb-3"
-               style="font-size: 0.85rem; color: var(--hg-text-muted);">
-            <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
-              <input type="checkbox" id="remember" name="remember"
-                     style="accent-color: var(--hg-primary);">
-              Recordarme
-            </label>
-            <a href="#" style="color: var(--hg-secondary); text-decoration:none; font-size:0.82rem;">
-              ¿Olvidaste tu contraseña?
-            </a>
-          </div>
+          <!-- SECCIÓN 1: CATÁLOGO DE JUEGOS ADQUIRIDOS (BIBLIOTECA) -->
+          <section class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h3 style="font-family: var(--font-heading); font-size: 1.15rem; color: #fff;">
+                <i class="bi bi-collection-play-fill me-2 text-warning"></i>Mi Catálogo de Juegos Adquiridos
+                <span class="badge rounded-pill bg-primary ms-2" id="dashGameCount">1</span>
+              </h3>
+              <small class="text-muted-hg">Activación inmediata con CD Keys oficiales</small>
+            </div>
 
-          <!-- Botón de Envío -->
-          <button type="submit" class="btn-login">
-            <i class="bi bi-box-arrow-in-right me-2"></i>Entrar al Portal
-          </button>
+            <!-- Grid de Juegos en Biblioteca -->
+            <div class="row g-3" id="dashGamesGrid">
+              <!-- Renderizado dinámicamente por JavaScript -->
+            </div>
+          </section>
 
-        </form>
+          <!-- SECCIÓN 2: CUPONES DE DESCUENTO EXCLUSIVOS -->
+          <section class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h3 style="font-family: var(--font-heading); font-size: 1.15rem; color: #fff;">
+                <i class="bi bi-tags-fill me-2" style="color: var(--hg-accent);"></i>Mis Descuentos &amp; Cupones Exclusivos
+              </h3>
+              <small class="text-muted-hg">Aplica estos códigos al finalizar tu compra</small>
+            </div>
 
-        <div class="login-divider">o</div>
+            <div class="row g-3" id="dashCouponsGrid">
+              <!-- Cupones cargados dinámicamente -->
+            </div>
+          </section>
 
-        <!-- Registro Rápido -->
-        <p style="text-align:center; font-size:0.85rem; color: var(--hg-text-muted);">
-          ¿Aún no tienes cuenta?
-          <a href="#" style="color: var(--hg-secondary); text-decoration:none; font-weight:600;">
-            Crear cuenta gratuita
-          </a>
-        </p>
+          <!-- SECCIÓN 3: ANUNCIOS Y PRÓXIMOS VIDEOJUEGOS (2025 - 2026) -->
+          <section class="mb-2">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h3 style="font-family: var(--font-heading); font-size: 1.15rem; color: #fff;">
+                <i class="bi bi-megaphone-fill me-2" style="color: var(--hg-secondary);"></i>Anuncios &amp; Próximos Videojuegos (2025 - 2026)
+              </h3>
+              <small class="text-muted-hg">Notificaciones en primicia para miembros registrados</small>
+            </div>
 
-      </div>
+            <div class="row g-3" id="dashAnnouncementsGrid">
+              <!-- Anuncios cargados dinámicamente -->
+            </div>
+          </section>
+
+        </div><!-- /authDashboardView -->
+
+      </div><!-- /login-card -->
 
     </main>
 
@@ -214,108 +451,431 @@
   <!-- Bootstrap 5 JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Módulos Core E-commerce -->
+  <!-- Módulos Core E-commerce y Autenticación -->
   <script src="js/ecommerce-core.js"></script>
+  <script src="js/auth-system.js"></script>
 
+  <!-- Lógica de Interfaz del Portal Gamer -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Enlazar el ícono del nav con el carrito una vez inyectado
+      // 1. Enlazar carrito con el ícono del navbar
       if (window.ecommerceApp && window.ecommerceApp.cartUI) {
         window.ecommerceApp.cartUI.bindCartIcon('navCartIcon');
       }
-    });
 
-    // Toggle visibilidad de contraseña
-    const passwordInput = document.getElementById('password');
-    const toggleBtn     = document.getElementById('togglePassword');
-    const toggleIcon    = document.getElementById('toggleIcon');
+      // 2. Elementos DOM de autenticación
+      const mainCard = document.getElementById('mainAuthCard');
+      const guestView = document.getElementById('authGuestView');
+      const dashView = document.getElementById('authDashboardView');
 
-    if (toggleBtn && passwordInput && toggleIcon) {
-      toggleBtn.addEventListener('click', () => {
-        const isHidden = passwordInput.type === 'password';
-        passwordInput.type = isHidden ? 'text' : 'password';
-        toggleIcon.className = isHidden ? 'bi bi-eye-slash' : 'bi bi-eye';
+      const tabBtnLogin = document.getElementById('tabBtnLogin');
+      const tabBtnRegister = document.getElementById('tabBtnRegister');
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const globalAlert = document.getElementById('globalAuthAlert');
+
+      // Campos de Login
+      const loginEmail = document.getElementById('loginEmail');
+      const loginEmailFeedback = document.getElementById('loginEmailFeedback');
+      const loginPw = document.getElementById('loginPassword');
+      const loginPwFeedback = document.getElementById('loginPasswordFeedback');
+
+      // Campos de Registro
+      const regUsername = document.getElementById('regUsername');
+      const regUsernameFeedback = document.getElementById('regUsernameFeedback');
+      const regEmail = document.getElementById('regEmail');
+      const regEmailFeedback = document.getElementById('regEmailFeedback');
+      const regPw = document.getElementById('regPassword');
+      const regPwFeedback = document.getElementById('regPasswordFeedback');
+      const regPwConfirm = document.getElementById('regPasswordConfirm');
+      const regPwConfirmFeedback = document.getElementById('regPasswordConfirmFeedback');
+
+      // Reglas de checklist de contraseña
+      const ruleLength = document.getElementById('ruleLength');
+      const ruleUpper = document.getElementById('ruleUpper');
+      const ruleSpecial = document.getElementById('ruleSpecial');
+      const ruleSpaces = document.getElementById('ruleSpaces');
+
+      // Toggle visibilidad de contraseña
+      document.querySelectorAll('.toggle-password-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetId = btn.dataset.target;
+          const input = document.getElementById(targetId);
+          if (!input) return;
+          const isHidden = input.type === 'password';
+          input.type = isHidden ? 'text' : 'password';
+          const icon = btn.querySelector('i');
+          if (icon) {
+            icon.className = isHidden ? 'bi bi-eye-slash' : 'bi bi-eye';
+          }
+        });
       });
-    }
 
-    // Validación inline sin alert()
-    function setFieldValidity(input, feedbackEl, isValid, message) {
-      if (!input || !feedbackEl) return isValid;
-      if (isValid) {
-        input.classList.remove('error');
-        feedbackEl.textContent = '';
-        feedbackEl.className   = 'field-feedback';
-      } else {
-        input.classList.add('error');
-        feedbackEl.textContent = message;
-        feedbackEl.className   = 'field-feedback is-error';
+      // Alternar Pestañas (Iniciar Sesión <-> Registro)
+      function setAuthTab(tab) {
+        if (tab === 'register') {
+          tabBtnLogin.classList.remove('active');
+          tabBtnRegister.classList.add('active');
+          loginForm.classList.add('d-none');
+          registerForm.classList.remove('d-none');
+          document.getElementById('authViewTitle').textContent = 'Crear Cuenta Gamer';
+          document.getElementById('authViewSubtitle').textContent = 'Regístrate con datos reales para recibir tu juego de bienvenida y descuentos';
+        } else {
+          tabBtnRegister.classList.remove('active');
+          tabBtnLogin.classList.add('active');
+          registerForm.classList.add('d-none');
+          loginForm.classList.remove('d-none');
+          document.getElementById('authViewTitle').textContent = 'Portal Hunter Games';
+          document.getElementById('authViewSubtitle').textContent = 'Inicia sesión para acceder a tu catálogo de juegos y cupones';
+        }
+        globalAlert.className = 'alert d-none';
       }
-      return isValid;
-    }
 
-    const emailInput    = document.getElementById('email');
-    const emailFeedback = document.getElementById('emailFeedback');
-    const pwInput       = document.getElementById('password');
-    const pwFeedback    = document.getElementById('passwordFeedback');
-
-    const EMAIL_REGEX   = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const MIN_PW_LENGTH = 8;
-
-    if (emailInput) {
-      emailInput.addEventListener('blur', () => {
-        setFieldValidity(
-          emailInput, emailFeedback,
-          EMAIL_REGEX.test(emailInput.value.trim()),
-          'Ingresa un correo electrónico válido.'
-        );
+      tabBtnLogin?.addEventListener('click', () => setAuthTab('login'));
+      tabBtnRegister?.addEventListener('click', () => setAuthTab('register'));
+      document.getElementById('linkGoToRegister')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        setAuthTab('register');
       });
-    }
-
-    if (pwInput) {
-      pwInput.addEventListener('blur', () => {
-        setFieldValidity(
-          pwInput, pwFeedback,
-          pwInput.value.length >= MIN_PW_LENGTH,
-          `La contraseña debe tener al menos ${MIN_PW_LENGTH} caracteres.`
-        );
+      document.getElementById('linkGoToLogin')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        setAuthTab('login');
       });
-    }
 
-    // Submit del Formulario
-    document.getElementById('loginForm')?.addEventListener('submit', (e) => {
-      e.preventDefault();
+      // ==============================================
+      // VALIDACIÓN EN TIEMPO REAL DE CONTRASEÑA
+      // ==============================================
+      function updatePasswordChecklist(val) {
+        const hasLength = val.length >= 8 && val.length <= 12;
+        const hasUpper = /[A-Z]/.test(val);
+        const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`]/.test(val);
+        const hasNoSpaces = val.length > 0 && !val.includes(' ');
 
-      const emailValid = setFieldValidity(
-        emailInput, emailFeedback,
-        EMAIL_REGEX.test(emailInput.value.trim()),
-        'Ingresa un correo electrónico válido.'
-      );
+        function toggleRule(el, isValid) {
+          if (!el) return;
+          if (isValid) {
+            el.className = 'pw-rule-item rule-valid';
+            el.querySelector('i').className = 'bi bi-check-circle-fill text-success';
+          } else {
+            el.className = 'pw-rule-item rule-invalid';
+            el.querySelector('i').className = 'bi bi-x-circle text-danger';
+          }
+        }
 
-      const pwValid = setFieldValidity(
-        pwInput, pwFeedback,
-        pwInput.value.length >= MIN_PW_LENGTH,
-        `La contraseña debe tener al menos ${MIN_PW_LENGTH} caracteres.`
-      );
+        toggleRule(ruleLength, hasLength);
+        toggleRule(ruleUpper, hasUpper);
+        toggleRule(ruleSpecial, hasSpecial);
+        toggleRule(ruleSpaces, hasNoSpaces);
 
-      if (emailValid && pwValid) {
-        emailFeedback.textContent = '';
-        pwFeedback.textContent    = '✓ Acceso validado exitosamente. Redirigiendo…';
-        pwFeedback.className      = 'field-feedback is-success';
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 1200);
+        return hasLength && hasUpper && hasSpecial && hasNoSpaces;
+      }
+
+      regPw?.addEventListener('input', (e) => {
+        updatePasswordChecklist(e.target.value);
+        if (regPwConfirm.value.length > 0) {
+          checkPwMatch();
+        }
+      });
+
+      function checkPwMatch() {
+        if (!regPwConfirm || !regPw) return true;
+        if (regPwConfirm.value !== regPw.value) {
+          regPwConfirm.classList.add('error');
+          regPwConfirmFeedback.textContent = 'Las contraseñas no coinciden.';
+          regPwConfirmFeedback.className = 'field-feedback is-error';
+          return false;
+        } else {
+          regPwConfirm.classList.remove('error');
+          regPwConfirmFeedback.textContent = '✓ Las contraseñas coinciden.';
+          regPwConfirmFeedback.className = 'field-feedback is-success';
+          return true;
+        }
+      }
+
+      regPwConfirm?.addEventListener('input', checkPwMatch);
+
+      // ==============================================
+      // VALIDACIÓN DE CORREO ELECTRÓNICO REAL (SIN ESPACIOS)
+      // ==============================================
+      function validateEmailInput(input, feedbackEl) {
+        if (!input || !feedbackEl) return false;
+        const val = input.value;
+        const check = window.HunterAuth ? window.HunterAuth.validateEmail(val) : { isValid: true };
+
+        if (!check.isValid) {
+          input.classList.add('error');
+          feedbackEl.textContent = check.message;
+          feedbackEl.className = 'field-feedback is-error';
+          return false;
+        } else {
+          input.classList.remove('error');
+          feedbackEl.textContent = '✓ Correo válido y verificado.';
+          feedbackEl.className = 'field-feedback is-success';
+          return true;
+        }
+      }
+
+      regEmail?.addEventListener('blur', () => validateEmailInput(regEmail, regEmailFeedback));
+      loginEmail?.addEventListener('blur', () => validateEmailInput(loginEmail, loginEmailFeedback));
+
+      // ==============================================
+      // SUBMIT REGISTRO DE CUENTA
+      // ==============================================
+      registerForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const usernameVal = regUsername.value.trim();
+        const emailVal = regEmail.value;
+        const pwVal = regPassword.value;
+        const newsletterVal = document.getElementById('regNewsletter')?.checked;
+
+        // Validaciones
+        if (usernameVal.length < 3) {
+          regUsername.classList.add('error');
+          regUsernameFeedback.textContent = 'El GamerTag debe tener al menos 3 caracteres.';
+          regUsernameFeedback.className = 'field-feedback is-error';
+          regUsername.focus();
+          return;
+        } else {
+          regUsername.classList.remove('error');
+          regUsernameFeedback.textContent = '';
+        }
+
+        const isEmailOk = validateEmailInput(regEmail, regEmailFeedback);
+        if (!isEmailOk) {
+          regEmail.focus();
+          return;
+        }
+
+        const isPwOk = updatePasswordChecklist(pwVal);
+        if (!isPwOk) {
+          regPw.classList.add('error');
+          regPwFeedback.textContent = 'Tu contraseña debe cumplir todos los requisitos (8-12 caracteres, mayúscula, carácter especial, sin espacios).';
+          regPwFeedback.className = 'field-feedback is-error';
+          regPw.focus();
+          return;
+        }
+
+        const isMatchOk = checkPwMatch();
+        if (!isMatchOk) {
+          regPwConfirm.focus();
+          return;
+        }
+
+        // Llamar a AuthSystem para registrar al usuario
+        const result = window.HunterAuth.register({
+          username: usernameVal,
+          email: emailVal,
+          password: pwVal,
+          newsletter: newsletterVal
+        });
+
+        if (result.success) {
+          globalAlert.className = 'alert alert-success py-2 px-3 mb-3 text-center';
+          globalAlert.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> ¡Cuenta creada con éxito! Cargando tu biblioteca gamer...';
+          globalAlert.classList.remove('d-none');
+          setTimeout(() => {
+            renderDashboard(result.user);
+          }, 800);
+        } else {
+          globalAlert.className = 'alert alert-danger py-2 px-3 mb-3 text-center';
+          globalAlert.innerHTML = `<i class="bi bi-exclamation-triangle-fill me-1"></i> ${result.message}`;
+          globalAlert.classList.remove('d-none');
+        }
+      });
+
+      // ==============================================
+      // SUBMIT INICIO DE SESIÓN
+      // ==============================================
+      loginForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const emailVal = loginEmail.value.trim();
+        const pwVal = loginPw.value;
+
+        if (!emailVal) {
+          loginEmail.classList.add('error');
+          loginEmailFeedback.textContent = 'Por favor ingresa tu correo electrónico.';
+          loginEmailFeedback.className = 'field-feedback is-error';
+          loginEmail.focus();
+          return;
+        }
+
+        if (!pwVal) {
+          loginPw.classList.add('error');
+          loginPwFeedback.textContent = 'Por favor ingresa tu contraseña.';
+          loginPwFeedback.className = 'field-feedback is-error';
+          loginPw.focus();
+          return;
+        }
+
+        const res = window.HunterAuth.login(emailVal, pwVal);
+        if (res.success) {
+          loginPwFeedback.textContent = '✓ Acceso concedido. Cargando biblioteca...';
+          loginPwFeedback.className = 'field-feedback is-success';
+          setTimeout(() => {
+            renderDashboard(res.user);
+          }, 600);
+        } else {
+          globalAlert.className = 'alert alert-danger py-2 px-3 mb-3 text-center';
+          globalAlert.innerHTML = `<i class="bi bi-x-circle-fill me-1"></i> ${res.message}`;
+          globalAlert.classList.remove('d-none');
+        }
+      });
+
+      // ==============================================
+      // RENDERIZADO DEL DASHBOARD GAMER
+      // ==============================================
+      function renderDashboard(user) {
+        if (!user) return;
+
+        guestView.classList.add('d-none');
+        dashView.classList.remove('d-none');
+        mainCard.classList.add('dashboard-mode');
+
+        // Datos del usuario en banner
+        document.getElementById('dashUsername').textContent = user.username;
+        document.getElementById('dashEmail').textContent = user.email;
+
+        // 1. Renderizar Juegos Adquiridos
+        const gamesGrid = document.getElementById('dashGamesGrid');
+        const gameCountBadge = document.getElementById('dashGameCount');
+        const games = user.purchasedGames || [];
+        gameCountBadge.textContent = games.length;
+
+        if (games.length === 0) {
+          gamesGrid.innerHTML = `
+            <div class="col-12 text-center py-4">
+              <i class="bi bi-controller" style="font-size: 3rem; color: var(--hg-text-muted);"></i>
+              <p class="text-muted-hg mt-2">Aún no tienes juegos en tu biblioteca. ¡Explora el catálogo o adquiere tus favoritos!</p>
+              <a href="index.html" class="btn btn-sm btn-hg-primary mt-2">Explorar Catálogo de Videojuegos</a>
+            </div>
+          `;
+        } else {
+          gamesGrid.innerHTML = games.map(g => `
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="library-card">
+                <img src="${g.img}" alt="${g.title}" class="library-card-img" onerror="this.src='img/predator.jpg'">
+                <div class="p-3 d-flex flex-column flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="text-white mb-0" style="font-size: 0.98rem; font-weight: 700;">${g.title}</h5>
+                    <span class="badge" style="background: rgba(0, 245, 212, 0.15); color: var(--hg-secondary); font-size: 0.68rem;">
+                      ${g.genre}
+                    </span>
+                  </div>
+                  <p class="text-muted-hg mb-2" style="font-size: 0.78rem;">
+                    <i class="bi bi-hdd-fill me-1"></i>${g.sizeGB} GB &middot; Adquirido: ${g.acquiredDate}
+                  </p>
+                  <div class="mb-3">
+                    <label style="font-size: 0.7rem; color: var(--hg-text-muted); text-transform: uppercase;">Licencia CD-Key:</label>
+                    <div class="d-flex align-items-center justify-content-between cd-key-badge">
+                      <span>${g.key}</span>
+                      <button type="button" class="btn btn-sm p-0 text-secondary-hg" title="Copiar Key" onclick="copyToClipboard('${g.key}', this)">
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="mt-auto d-flex gap-2">
+                    <button type="button" class="btn btn-sm btn-outline-success flex-grow-1" onclick="alert('Iniciando descarga e instalación de ${g.title}...')">
+                      <i class="bi bi-play-circle-fill me-1"></i> Jugar / Descargar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        // 2. Renderizar Cupones Exclusivos
+        const couponsGrid = document.getElementById('dashCouponsGrid');
+        const coupons = user.discounts || [
+          { code: 'BIENVENIDOGAMER', desc: '20% de descuento en cualquier compra', discountPercent: 20 },
+          { code: 'HUNTERPRO', desc: '$15 USD de regalo en compras mayores a $50 USD', discountAmount: 15 }
+        ];
+
+        couponsGrid.innerHTML = coupons.map(c => `
+          <div class="col-12 col-md-6">
+            <div class="coupon-ticket d-flex align-items-center justify-content-between">
+              <div>
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <span class="badge bg-warning text-dark font-monospace" style="letter-spacing: 1px; font-size: 0.82rem;">${c.code}</span>
+                  <span style="font-size: 0.75rem; color: var(--hg-accent); font-weight: 700;">ACTIVO</span>
+                </div>
+                <p class="text-white mb-0" style="font-size: 0.85rem;">${c.desc}</p>
+              </div>
+              <button type="button" class="btn btn-sm btn-outline-warning" onclick="copyToClipboard('${c.code}', this)" title="Copiar código">
+                <i class="bi bi-clipboard me-1"></i>Copiar
+              </button>
+            </div>
+          </div>
+        `).join('');
+
+        // 3. Renderizar Anuncios y Próximos Lanzamientos
+        const announcementsGrid = document.getElementById('dashAnnouncementsGrid');
+        const upcoming = window.HunterAuth.getUpcomingAnnouncements();
+
+        announcementsGrid.innerHTML = upcoming.map(item => `
+          <div class="col-12 col-md-6">
+            <div class="announcement-box d-flex gap-3 p-2 align-items-center">
+              <img src="${item.img}" alt="${item.title}" style="width: 110px; height: 75px; object-fit: cover; border-radius: 4px;" onerror="this.src='img/predator.jpg'">
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between align-items-start">
+                  <h6 class="text-white mb-0" style="font-size: 0.92rem;">${item.title}</h6>
+                  <span class="badge" style="background: rgba(123, 47, 255, 0.2); color: #fff; font-size: 0.65rem; border: 1px solid rgba(123, 47, 255, 0.4);">
+                    ${item.releaseYear}
+                  </span>
+                </div>
+                <p class="text-muted-hg mb-1" style="font-size: 0.75rem;">${item.genre} &middot; <strong class="text-secondary-hg">${item.developer}</strong></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <small style="font-size: 0.7rem; color: var(--hg-accent);"><i class="bi bi-star-fill me-1"></i>${item.badge}</small>
+                  <a href="index.html?search=${encodeURIComponent(item.title)}" class="btn btn-sm p-0 text-info" style="font-size: 0.75rem;">
+                    Ver en Catálogo &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Cerrar Sesión
+      document.getElementById('btnLogout')?.addEventListener('click', () => {
+        if (confirm('¿Deseas cerrar tu sesión actual en Hunter Games?')) {
+          window.HunterAuth.logout();
+        }
+      });
+
+      // Función Global para Copiar al Portapapeles
+      window.copyToClipboard = function(text, btn) {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(() => {
+            const origHtml = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-check2 text-success"></i> ¡Copiado!';
+            setTimeout(() => { btn.innerHTML = origHtml; }, 1800);
+          }).catch(() => {
+            prompt('Copia este código manualmente:', text);
+          });
+        } else {
+          prompt('Copia este código manualmente:', text);
+        }
+      };
+
+      // Si ya hay un usuario activo, mostrar directamente el Dashboard
+      const activeUser = window.HunterAuth.getActiveUser();
+      if (activeUser) {
+        renderDashboard(activeUser);
+      }
+
+      // Efecto Navbar Scroll
+      const navbar = document.querySelector('.hg-navbar');
+      if (navbar) {
+        window.addEventListener('scroll', () => {
+          navbar.style.background = window.scrollY > 50
+            ? 'rgba(10,10,15,0.98)'
+            : 'var(--hg-bg-nav)';
+        }, { passive: true });
       }
     });
-
-    // Navbar Scroll
-    const navbar = document.querySelector('.hg-navbar');
-    if (navbar) {
-      window.addEventListener('scroll', () => {
-        navbar.style.background = window.scrollY > 50
-          ? 'rgba(10,10,15,0.98)'
-          : 'var(--hg-bg-nav)';
-      }, { passive: true });
-    }
   </script>
 
 </body>
