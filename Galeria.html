@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hunter Games — Galería Ultra HD de capturas, wallpapers y key art de videojuegos 2024 - 2026.">
+  <title>Hunter Games — Galería Ultra HD</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="img/predator.ico">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Design System -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ecommerce.css">
+</head>
+<body>
+
+  <!-- ============================================
+       NAVBAR (100% Limpio y Unificado)
+       ============================================ -->
+  <nav class="navbar navbar-expand-lg fixed-top hg-navbar">
+    <div class="container">
+
+      <a class="navbar-brand" href="index.html">
+        <img src="img/predator.jpg" alt="Hunter Games logo" class="brand-logo">
+        Hunter <span style="color: var(--hg-primary);">Games</span>
+      </a>
+
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="bi bi-house-door me-1"></i>Inicio
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="genresDropdown"
+               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-controller me-1"></i>Géneros
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="genresDropdown">
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Todos los Géneros</a></li>
+              <li><hr class="dropdown-divider" style="border-color: var(--hg-border);"></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Acción</a></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Aventura</a></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">RPG</a></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Hack &amp; Slash</a></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Terror</a></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Deportes &amp; Carreras</a></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Simuladores</a></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Arcade &amp; Lucha</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="Galeria.html">
+              <i class="bi bi-images me-1"></i>Galería HD
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="lista.html">
+              <i class="bi bi-list-ol me-1"></i>Top Games
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">
+              <i class="bi bi-person-circle me-1"></i>Acceder
+            </a>
+          </li>
+
+          <li class="nav-item ms-lg-2">
+            <a class="nav-link position-relative" href="#" id="navCartIcon">
+              <i class="bi bi-cart3" style="font-size: 1.2rem;"></i>
+            </a>
+          </li>
+
+        </ul>
+
+        <form class="d-flex gap-2" role="search" onsubmit="return false;">
+          <input class="form-control search-input" type="search" id="gallerySearchInput"
+                 placeholder="Buscar capturas en HD…" aria-label="Buscar">
+          <button class="btn-search" type="button" id="gallerySearchBtn">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       CONTENIDO DE LA PÁGINA
+       ============================================ -->
+  <div class="page-content">
+
+    <!-- ============================================
+         FEATURED CAROUSEL (Limpio y Cinematográfico)
+         ============================================ -->
+    <section class="hero-section">
+
+      <div id="galleryCarousel" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="0" class="active" aria-label="GTA VI" aria-current="true"></button>
+          <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="1" aria-label="Monster Hunter Wilds"></button>
+          <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="2" aria-label="DOOM The Dark Ages"></button>
+          <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="3" aria-label="Silent Hill 2"></button>
+          <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="4" aria-label="Black Myth Wukong"></button>
+        </div>
+
+        <div class="carousel-inner h-100">
+
+          <!-- 1. GTA VI -->
+          <div class="carousel-item active h-100">
+            <img src="img/gta.jpg" class="d-block" alt="Grand Theft Auto VI">
+            <div class="hero-gradient"></div>
+            <div class="hero-carousel-caption">
+              <span class="hero-badge badge-2026">LANZAMIENTO 2025 - 2026</span>
+              <h2 class="hero-title-main">Grand Theft Auto VI</h2>
+              <p class="hero-desc-text">Vice City en Ultra Alta Definición 4K con iluminación por Ray Tracing &middot; PS5 &middot; Xbox Series X/S &middot; PC</p>
+            </div>
+          </div>
+
+          <!-- 2. Monster Hunter Wilds -->
+          <div class="carousel-item h-100">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2246340/library_hero.jpg" class="d-block" alt="Monster Hunter Wilds" onerror="this.src='img/predator.jpg'">
+            <div class="hero-gradient"></div>
+            <div class="hero-carousel-caption">
+              <span class="hero-badge badge-2025">ESTRENO 2025</span>
+              <h2 class="hero-title-main">Monster Hunter Wilds</h2>
+              <p class="hero-desc-text">Cacerías épicas en ecosistemas dinámicos &middot; PC &middot; PlayStation 5 &middot; Xbox</p>
+            </div>
+          </div>
+
+          <!-- 3. DOOM Eternal -->
+          <div class="carousel-item h-100">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/782330/library_hero.jpg" class="d-block" alt="DOOM Eternal" onerror="this.src='img/predator.jpg'">
+            <div class="hero-gradient"></div>
+            <div class="hero-carousel-caption">
+              <span class="hero-badge badge-2025">ACCIÓN 2020</span>
+              <h2 class="hero-title-main">DOOM Eternal</h2>
+              <p class="hero-desc-text">La guerra infernal del Slayer con el doble de adrenalina e idTech 7</p>
+            </div>
+          </div>
+
+          <!-- 4. Silent Hill 2 Remake -->
+          <div class="carousel-item h-100">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2124490/library_hero.jpg" class="d-block" alt="Silent Hill 2" onerror="this.src='img/predator.jpg'">
+            <div class="hero-gradient"></div>
+            <div class="hero-carousel-caption">
+              <span class="hero-badge badge-2024">TERROR PSICOLÓGICO</span>
+              <h2 class="hero-title-main">Silent Hill 2 Remake</h2>
+              <p class="hero-desc-text">Pesadilla psicológica en Unreal Engine 5 con sonido 3D espacial</p>
+            </div>
+          </div>
+
+          <!-- 5. Black Myth: Wukong -->
+          <div class="carousel-item h-100">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/library_hero.jpg" class="d-block" alt="Black Myth Wukong" onerror="this.src='img/predator.jpg'">
+            <div class="hero-gradient"></div>
+            <div class="hero-carousel-caption">
+              <span class="hero-badge badge-2024">HIT MUNDIAL</span>
+              <h2 class="hero-title-main">Black Myth: Wukong</h2>
+              <p class="hero-desc-text">Mitología oriental épica con combate de artes marciales vertiginoso</p>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- ============================================
+         GRID DE GALERÍA (Con Filtros por Género)
+         ============================================ -->
+    <section class="section" id="galeria-seccion">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="section-label">Capturas &amp; Key Art en Alta Resolución</span>
+          <h2 class="section-title">Galería por <span class="highlight">Géneros &amp; Consolas</span></h2>
+          <p class="text-muted-hg" style="font-size: 0.95rem;">Haz clic en cualquier imagen para verla en pantalla completa con detalles técnicos.</p>
+          <hr class="section-line">
+        </div>
+
+        <!-- Filtros de Género en la Galería -->
+        <div class="d-flex flex-wrap gap-2 mb-4" id="galleryFilters">
+          <button class="pill-btn active" data-filter="all"><i class="bi bi-asterisk"></i> Todos</button>
+          <button class="pill-btn" data-filter="accion">Acción</button>
+          <button class="pill-btn" data-filter="aventura">Aventura</button>
+          <button class="pill-btn" data-filter="rpg">RPG</button>
+          <button class="pill-btn" data-filter="hack-slash">Hack &amp; Slash</button>
+          <button class="pill-btn" data-filter="terror">Terror</button>
+          <button class="pill-btn" data-filter="deportes">Deportes</button>
+          <button class="pill-btn" data-filter="simuladores">Simuladores</button>
+          <button class="pill-btn" data-filter="arcade">Arcade</button>
+        </div>
+
+        <!-- Grid de Imágenes en Alta Resolución -->
+        <div class="gallery-grid" id="galleryGrid">
+
+          <!-- GTA VI -->
+          <div class="gallery-item"
+               data-category="accion aventura"
+               data-title="Grand Theft Auto VI"
+               data-year="2025 - 2026"
+               data-genre="Acción / Aventura"
+               data-platforms="PS5 &middot; Xbox Series X/S &middot; PC"
+               data-img="img/gta.jpg">
+            <img src="img/gta.jpg" alt="Grand Theft Auto VI" loading="lazy">
+            <div class="gallery-overlay">
+              <div>
+                <span class="badge-year badge-2026 mb-1 d-inline-block">2025 - 2026</span>
+                <span class="gallery-item-title d-block">Grand Theft Auto VI</span>
+                <small style="color:var(--hg-text-muted); font-size:0.75rem;">PS5 &middot; Xbox &middot; PC</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Monster Hunter Wilds -->
+          <div class="gallery-item"
+               data-category="rpg aventura"
+               data-title="Monster Hunter Wilds"
+               data-year="2025"
+               data-genre="RPG de Caza"
+               data-platforms="PC &middot; PS5 &middot; Xbox Series X/S"
+               data-img="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2246340/library_hero.jpg">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2246340/library_hero.jpg" alt="Monster Hunter Wilds" loading="lazy" onerror="this.src='img/predator.jpg'">
+            <div class="gallery-overlay">
+              <div>
+                <span class="badge-year badge-2025 mb-1 d-inline-block">2025</span>
+                <span class="gallery-item-title d-block">Monster Hunter Wilds</span>
+                <small style="color:var(--hg-text-muted); font-size:0.75rem;">PC &middot; PS5 &middot; Xbox</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- DOOM Eternal -->
+          <div class="gallery-item"
+               data-category="accion"
+               data-title="DOOM Eternal"
+               data-year="2020"
+               data-genre="Acción / Disparos"
+               data-platforms="PC &middot; PS5 &middot; Xbox Series X/S"
+               data-img="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/782330/library_hero.jpg">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/782330/library_hero.jpg" alt="DOOM Eternal" loading="lazy" onerror="this.src='img/predator.jpg'">
+            <div class="gallery-overlay">
+              <div>
+                <span class="badge-year badge-2025 mb-1 d-inline-block">2020</span>
+                <span class="gallery-item-title d-block">DOOM Eternal</span>
+                <small style="color:var(--hg-text-muted); font-size:0.75rem;">PC &middot; PS5 &middot; Xbox</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Black Myth: Wukong -->
+          <div class="gallery-item"
+               data-category="hack-slash accion rpg"
+               data-title="Black Myth: Wukong"
+               data-year="HIT 2024 - 2025"
+               data-genre="Hack &amp; Slash / RPG"
+               data-platforms="PC &middot; PS5 &middot; Xbox Series X/S"
+               data-img="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/library_hero.jpg">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/library_hero.jpg" alt="Black Myth Wukong" loading="lazy" onerror="this.src='img/predator.jpg'">
+            <div class="gallery-overlay">
+              <div>
+                <span class="badge-year badge-2024 mb-1 d-inline-block">2024 - 2025</span>
+                <span class="gallery-item-title d-block">Black Myth: Wukong</span>
+                <small style="color:var(--hg-text-muted); font-size:0.75rem;">PC &middot; PS5 &middot; Xbox</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Clair Obscur: Expedition 33 -->
+          <div class="gallery-item"
+               data-category="rpg"
+               data-title="Clair Obscur: Expedition 33"
+               data-year="2025"
+               data-genre="RPG por Turnos"
+               data-platforms="PC &middot; PS5 &middot; Xbox Series X/S"
+               data-img="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1903340/library_hero.jpg">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1903340/library_hero.jpg" alt="Clair Obscur Expedition 33" loading="lazy" onerror="this.src='img/predator.jpg'">
+            <div class="gallery-overlay">
+              <div>
+                <span class="badge-year badge-2025 mb-1 d-inline-block">2025</span>
+                <span class="gallery-item-title d-block">Clair Obscur: Exp. 33</span>
+                <small style="color:var(--hg-text-muted); font-size:0.75rem;">PC &middot; PS5 &middot; Xbox</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Silent Hill 2 Remake -->
+          <div class="gallery-item"
+               data-category="terror"
+               data-title="Silent Hill 2 Remake"
+               data-year="2024 - 2025"
+               data-genre="Terror Psicológico"
+               data-platforms="PC &middot; PS5"
+               data-img="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2124490/library_hero.jpg">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2124490/library_hero.jpg" alt="Silent Hill 2" loading="lazy" onerror="this.src='img/predator.jpg'">
+            <div class="gallery-overlay">
+              <div>
+                <span class="badge-year badge-2024 mb-1 d-inline-block">TERROR</span>
+                <span class="gallery-item-title d-block">Silent Hill 2 Remake</span>
+                <small style="color:var(--hg-text-muted); font-size:0.75rem;">PC &middot; PS5</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kingdom Come: Deliverance II -->
+          <div class="gallery-item"
+               data-category="rpg aventura"
+               data-title="Kingdom Come: Deliverance II"
+               data-year="2025"
+               data-genre="RPG Histórico"
+               data-platforms="PC &middot; PS5 &middot; Xbox Series X/S"
+               data-img="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1771300/library_hero.jpg">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1771300/library_hero.jpg" alt="Kingdom Come Deliverance 2" loading="lazy" onerror="this.src='img/predator.jpg'">
+            <div class="gallery-overlay">
+              <div>
+                <span class="badge-year badge-2025 mb-1 d-inline-block">2025</span>
+                <span class="gallery-item-title d-block">Kingdom Come II</span>
+                <small style="color:var(--hg-text-muted); font-size:0.75rem;">PC &middot; PS5 &middot; Xbox</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- God of War Ragnarok -->
+          <div class="gallery-item"
+               data-category="hack-slash aventura"
+               data-title="God of War Ragnarök"
+               data-year="PC &middot; PS5 &middot; PS4"
+               data-genre="Hack &amp; Slash / Aventura"
+               data-platforms="PC &middot; PS5 &middot; PS4"
+               data-img="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2322010/library_hero.jpg">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2322010/library_hero.jpg" alt="God of War Ragnarok" loading="lazy" onerror="this.src='img/predator.jpg'">
+            <div class="gallery-overlay">
+              <div>
+                <span class="badge-year badge-2024 mb-1 d-inline-block">PC &amp; PS5 / PS4</span>
+                <span class="gallery-item-title d-block">God of War Ragnarök</span>
+                <small style="color:var(--hg-text-muted); font-size:0.75rem;">PC &middot; PS5 &middot; PS4</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Elden Ring: Shadow of the Erdtree -->
+          <div class="gallery-item"
+               data-category="rpg hack-slash"
+               data-title="Elden Ring: Shadow of the Erdtree"
+               data-year="GOTY EDITION"
+               data-genre="Action RPG"
+               data-platforms="PC &middot; PS5 &middot; PS4 &middot; Xbox"
+               data-img="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/library_hero.jpg">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/library_hero.jpg" alt="Elden Ring" loading="lazy" onerror="this.src='img/predator.jpg'">
+            <div class="gallery-overlay">
+              <div>
+                <span class="badge-year badge-2024 mb-1 d-inline-block">EXPANSIÓN</span>
+                <span class="gallery-item-title d-block">Elden Ring: Erdtree</span>
+                <small style="color:var(--hg-text-muted); font-size:0.75rem;">PC &middot; PS5 &middot; Xbox</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dragon Ball: Sparking! ZERO -->
+          <div class="gallery-item"
+               data-category="arcade accion"
+               data-title="Dragon Ball: Sparking! ZERO"
+               data-year="2024 - 2025"
+               data-genre="Arcade / Lucha 3D"
+               data-platforms="PC &middot; PS5 &middot; Xbox Series X/S"
+               data-img="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1790600/library_hero.jpg">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1790600/library_hero.jpg" alt="Dragon Ball Sparking Zero" loading="lazy" onerror="this.src='img/predator.jpg'">
+            <div class="gallery-overlay">
+              <div>
+                <span class="badge-year badge-2024 mb-1 d-inline-block">LUCHA 3D</span>
+                <span class="gallery-item-title d-block">Dragon Ball: Sparking! ZERO</span>
+                <small style="color:var(--hg-text-muted); font-size:0.75rem;">PC &middot; PS5 &middot; Xbox</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- EA Sports FC 25 -->
+          <div class="gallery-item"
+               data-category="deportes"
+               data-title="EA Sports FC 25"
+               data-year="2025"
+               data-genre="Deportes / Fútbol"
+               data-platforms="PC &middot; PS5 &middot; PS4 &middot; Xbox &middot; Switch"
+               data-img="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2669320/library_hero.jpg">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2669320/library_hero.jpg" alt="EA Sports FC 25" loading="lazy" onerror="this.src='img/predator.jpg'">
+            <div class="gallery-overlay">
+              <div>
+                <span class="badge-year badge-2025 mb-1 d-inline-block">2025</span>
+                <span class="gallery-item-title d-block">EA Sports FC 25</span>
+                <small style="color:var(--hg-text-muted); font-size:0.75rem;">Multiplataforma &middot; Switch</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Forza Horizon 5 -->
+          <div class="gallery-item"
+               data-category="deportes"
+               data-title="Forza Horizon 5"
+               data-year="ACTUALIZACIÓN 2025"
+               data-genre="Carreras / Deportes"
+               data-platforms="PC &middot; Xbox Series X/S"
+               data-img="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1551360/library_hero.jpg">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1551360/library_hero.jpg" alt="Forza Horizon 5" loading="lazy" onerror="this.src='img/predator.jpg'">
+            <div class="gallery-overlay">
+              <div>
+                <span class="badge-year badge-2024 mb-1 d-inline-block">CARRERAS</span>
+                <span class="gallery-item-title d-block">Forza Horizon 5</span>
+                <small style="color:var(--hg-text-muted); font-size:0.75rem;">PC &middot; Xbox Series X/S</small>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /galleryGrid -->
+
+      </div>
+    </section>
+
+    <!-- ============================================
+         LIGHTBOX MODAL
+         ============================================ -->
+    <div class="modal fade hg-modal" id="imageModal" tabindex="-1" aria-labelledby="imageModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content" style="border: 1px solid var(--hg-primary); box-shadow: 0 0 40px rgba(123,47,255,0.4);">
+          <div class="modal-header" style="background: rgba(10,10,15,0.9); border-bottom: 1px solid var(--hg-border);">
+            <h5 class="modal-title" id="imageModalTitle" style="color: var(--hg-secondary); font-family: var(--font-heading);">Detalle de Captura</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body p-0 text-center" style="background:#080810;">
+            <img id="modalImg" src="" alt="Captura ampliada" style="width:100%; max-height:85vh; object-fit:contain;">
+          </div>
+          <div class="modal-footer justify-content-between" style="border-top:1px solid var(--hg-border);">
+            <div>
+              <span id="modalYear" class="badge-year badge-2025 me-2"></span>
+              <span id="modalGenre" class="genre-tag tag-accion me-2"></span>
+              <span id="modalPlatforms" style="color:var(--hg-text-muted); font-size:0.82rem;"></span>
+            </div>
+            <a href="index.html#seccion-generos" class="btn-hg-primary" style="padding:0.4rem 1.2rem; font-size:0.75rem;">
+              <i class="bi bi-controller me-1"></i>Ver en Catálogo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="hg-footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-12 col-md-4">
+            <a href="index.html" class="footer-brand d-block mb-1">Hunter Games</a>
+            <p class="footer-tagline">Tu portal de videojuegos gratuitos en alta definición.</p>
+          </div>
+          <div class="col-6 col-md-2">
+            <p class="field-label mb-2">Páginas</p>
+            <nav class="footer-nav">
+              <a href="index.html">Inicio</a>
+              <a href="lista.html">Top Games</a>
+              <a href="Galeria.html">Galería HD</a>
+              <a href="login.html">Acceder</a>
+            </nav>
+          </div>
+          <div class="col-6 col-md-2">
+            <p class="field-label mb-2">Géneros</p>
+            <nav class="footer-nav">
+              <a href="index.html#seccion-generos">Acción</a>
+              <a href="index.html#seccion-generos">RPG</a>
+              <a href="index.html#seccion-generos">Terror</a>
+              <a href="index.html#seccion-generos">Deportes</a>
+            </nav>
+          </div>
+        </div>
+        <p class="footer-copy">
+          <i class="bi bi-controller me-1"></i>
+          Copyright &copy; Hunter Games 2024 - 2026 — Todos los derechos reservados
+        </p>
+      </div>
+    </footer>
+
+  </div><!-- /page-content -->
+
+  <!-- Back to top -->
+  <button id="backToTop" aria-label="Volver arriba">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Módulos Core E-commerce -->
+  <script src="js/ecommerce-core.js"></script>
+
+  <!-- Lightbox Modal Lógica -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Enlazar el ícono del nav con el carrito una vez inyectado
+      if (window.ecommerceApp && window.ecommerceApp.cartUI) {
+        window.ecommerceApp.cartUI.bindCartIcon('navCartIcon');
+      }
+    });
+  </script>
+
+  <script>
+    // Back to top
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTopBtn.classList.toggle('visible', window.scrollY > 300);
+    }, { passive: true });
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Gallery filter logic
+    const filterBtns = document.querySelectorAll('#galleryFilters [data-filter]');
+    const galleryItems = document.querySelectorAll('#galleryGrid .gallery-item');
+    const searchInput = document.getElementById('gallerySearchInput');
+    const searchBtn = document.getElementById('gallerySearchBtn');
+
+    function filterGallery(filterVal, searchVal = '') {
+      galleryItems.forEach(item => {
+        const cat = item.dataset.category || '';
+        const title = (item.dataset.title || '').toLowerCase();
+
+        const matchCat = (filterVal === 'all') || cat.includes(filterVal);
+        const matchSearch = (!searchVal) || title.includes(searchVal.toLowerCase());
+
+        item.style.display = (matchCat && matchSearch) ? '' : 'none';
+      });
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filterGallery(filter, searchInput ? searchInput.value.trim() : '');
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const activeBtn = document.querySelector('#galleryFilters .active');
+        const curFilter = activeBtn ? activeBtn.dataset.filter : 'all';
+        filterGallery(curFilter, e.target.value.trim());
+      });
+    }
+
+    // Lightbox Modal
+    const imageModalEl = document.getElementById('imageModal');
+    const bsModal = bootstrap.Modal.getOrCreateInstance(imageModalEl);
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('imageModalTitle');
+    const modalYear = document.getElementById('modalYear');
+    const modalGenre = document.getElementById('modalGenre');
+    const modalPlatforms = document.getElementById('modalPlatforms');
+
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        modalImg.src = item.dataset.img;
+        modalTitle.textContent = item.dataset.title;
+        modalYear.textContent = item.dataset.year;
+        modalGenre.textContent = item.dataset.genre;
+        modalPlatforms.innerHTML = `<i class="bi bi-display me-1"></i> ${item.dataset.platforms}`;
+        bsModal.show();
+      });
+    });
+
+    // Navbar scroll effect
+    const navbar = document.querySelector('.hg-navbar');
+    window.addEventListener('scroll', () => {
+      navbar.style.background = window.scrollY > 50
+        ? 'rgba(10,10,15,0.98)'
+        : 'var(--hg-bg-nav)';
+    }, { passive: true });
+  </script>
+
+</body>
+</html>

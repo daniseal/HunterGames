@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hunter Games — Top juegos de PC y consolas más vendidos y jugados, incluyendo éxitos recientes 2024 - 2026.">
+  <title>Hunter Games — Top Games</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="img/predator.ico">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Design System -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ecommerce.css">
+</head>
+<body>
+
+  <!-- ============================================
+       NAVBAR (100% Limpio y Unificado)
+       ============================================ -->
+  <nav class="navbar navbar-expand-lg fixed-top hg-navbar">
+    <div class="container">
+
+      <a class="navbar-brand" href="index.html">
+        <img src="img/predator.jpg" alt="Hunter Games logo" class="brand-logo">
+        Hunter <span style="color: var(--hg-primary);">Games</span>
+      </a>
+
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="bi bi-house-door me-1"></i>Inicio
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="genresDropdown"
+               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-controller me-1"></i>Géneros
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="genresDropdown">
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Todos los Géneros</a></li>
+              <li><hr class="dropdown-divider" style="border-color: var(--hg-border);"></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Acción</a></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Aventura</a></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">RPG</a></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Hack &amp; Slash</a></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Terror</a></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Deportes &amp; Carreras</a></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Simuladores</a></li>
+              <li><a class="dropdown-item" href="index.html#seccion-generos">Arcade &amp; Lucha</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="Galeria.html">
+              <i class="bi bi-images me-1"></i>Galería HD
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="lista.html">
+              <i class="bi bi-list-ol me-1"></i>Top Games
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">
+              <i class="bi bi-person-circle me-1"></i>Acceder
+            </a>
+          </li>
+
+          <li class="nav-item ms-lg-2">
+            <a class="nav-link position-relative" href="#" id="navCartIcon">
+              <i class="bi bi-cart3" style="font-size: 1.2rem;"></i>
+            </a>
+          </li>
+
+        </ul>
+
+        <form class="d-flex gap-2" role="search" onsubmit="return false;">
+          <input class="form-control search-input" type="search" id="topSearchInput"
+                 placeholder="Filtrar por título o consola…" aria-label="Buscar">
+          <button class="btn-search" type="button" id="topSearchBtn">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       CONTENIDO PRINCIPAL
+       ============================================ -->
+  <div class="page-content">
+    <main class="list-page">
+      <div class="container">
+
+        <!-- Encabezado de Sección -->
+        <div class="section-header pt-4">
+          <span class="section-label">Estadísticas &amp; Ranking Global</span>
+          <h1 class="section-title">
+            Top Videojuegos <span class="highlight">Más Jugados &amp; Vendidos</span>
+          </h1>
+          <p class="text-muted-hg" style="font-size: 0.95rem;">
+            Cifras oficiales estimadas de ventas globales en PC, PlayStation (PS5/PS4), Xbox y Nintendo Switch.
+          </p>
+          <hr class="section-line">
+        </div>
+
+        <!-- Barra de Pestañas + Reloj en Tiempo Real -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+          <div class="d-flex align-items-center gap-2">
+            <button class="pill-btn active" id="tabHistoricBtn">
+              <i class="bi bi-trophy"></i> Top Histórico Más Vendidos
+            </button>
+            <button class="pill-btn" id="tabRecentBtn">
+              <i class="bi bi-fire text-accent-hg"></i> Hits Recientes (2024 - 2026)
+            </button>
+          </div>
+
+          <div class="clock-widget" aria-live="polite" aria-atomic="true">
+            <i class="bi bi-clock text-secondary-hg"></i>
+            <span id="clock">--:--:--</span>
+          </div>
+        </div>
+
+        <!-- Tabla Estilizada con Design System Gaming -->
+        <div class="hg-table-wrapper">
+          <table class="hg-table" id="gamesTable" aria-label="Top juegos">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Juego</th>
+                <th scope="col">Consolas</th>
+                <th scope="col">
+                  Ventas / Jugadores
+                  <span style="font-weight:400; font-size:0.65rem; opacity:0.6;">(Millones)</span>
+                </th>
+                <th scope="col" class="d-none d-md-table-cell">Popularidad Relativa</th>
+              </tr>
+            </thead>
+            <tbody id="gamesTableBody">
+              <!-- Renderizado dinámico vía JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Enlaces Rápidos -->
+        <div class="d-flex justify-content-center gap-3 mt-4">
+          <a href="index.html#seccion-generos" class="btn-hg-primary">
+            <i class="bi bi-grid-3x3-gap-fill me-1"></i> Explorar Catálogo con Filtros
+          </a>
+          <a href="index.html" class="btn-hg-outline">
+            <i class="bi bi-house-door me-1"></i> Volver al Inicio
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="hg-footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-12 col-md-4">
+            <a href="index.html" class="footer-brand d-block mb-1">Hunter Games</a>
+            <p class="footer-tagline">Tu portal de videojuegos gratuitos en alta definición.</p>
+          </div>
+          <div class="col-6 col-md-2">
+            <p class="field-label mb-2">Páginas</p>
+            <nav class="footer-nav">
+              <a href="index.html">Inicio</a>
+              <a href="lista.html">Top Games</a>
+              <a href="Galeria.html">Galería HD</a>
+              <a href="login.html">Acceder</a>
+            </nav>
+          </div>
+          <div class="col-6 col-md-3">
+            <p class="field-label mb-2">Géneros</p>
+            <nav class="footer-nav">
+              <a href="index.html#seccion-generos">Acción</a>
+              <a href="index.html#seccion-generos">RPG</a>
+              <a href="index.html#seccion-generos">Terror</a>
+              <a href="index.html#seccion-generos">Deportes</a>
+            </nav>
+          </div>
+          <div class="col-6 col-md-3">
+            <p class="field-label mb-2">Consolas</p>
+            <nav class="footer-nav">
+              <a href="index.html#seccion-generos">PC Windows</a>
+              <a href="index.html#seccion-generos">PlayStation 5</a>
+              <a href="index.html#seccion-generos">Xbox Series X/S</a>
+              <a href="index.html#seccion-generos">Nintendo Switch</a>
+            </nav>
+          </div>
+        </div>
+        <p class="footer-copy">
+          <i class="bi bi-controller me-1"></i>
+          Copyright &copy; Hunter Games 2024 - 2026 — Todos los derechos reservados
+        </p>
+      </div>
+    </footer>
+
+  </div><!-- /page-content -->
+
+  <!-- Back to top -->
+  <button id="backToTop" aria-label="Volver arriba">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Módulos Core E-commerce -->
+  <script src="js/ecommerce-core.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Enlazar el ícono del nav con el carrito una vez inyectado
+      if (window.ecommerceApp && window.ecommerceApp.cartUI) {
+        window.ecommerceApp.cartUI.bindCartIcon('navCartIcon');
+      }
+    });
+
+    // Colecciones de Datos
+    const HISTORIC_GAMES = [
+      { title: 'Minecraft',                       sales: 300, genre: 'Aventura / Sandbox', platforms: 'PC &middot; PS &middot; Xbox &middot; Switch', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1150690/capsule_231x87.jpg' },
+      { title: 'Grand Theft Auto V',              sales: 200, genre: 'Acción',              platforms: 'PC &middot; PS5/PS4 &middot; Xbox', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/capsule_231x87.jpg' },
+      { title: "PUBG: Battlegrounds",              sales: 75,  genre: 'Disparos',            platforms: 'PC &middot; PS &middot; Xbox', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/578080/capsule_231x87.jpg' },
+      { title: 'The Sims 4',                       sales: 70,  genre: 'Simuladores',         platforms: 'PC &middot; PS4 &middot; Xbox', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1222670/capsule_231x87.jpg' },
+      { title: 'The Witcher 3: Wild Hunt',         sales: 50,  genre: 'RPG / Aventura',      platforms: 'PC &middot; PS5/PS4 &middot; Xbox &middot; Switch', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/capsule_231x87.jpg' },
+      { title: 'Terraria',                         sales: 44,  genre: 'Aventura',            platforms: 'PC &middot; PS &middot; Xbox &middot; Switch', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/capsule_231x87.jpg' },
+      { title: 'Diablo III',                       sales: 30,  genre: 'Acción / RPG',        platforms: 'PC &middot; PS &middot; Xbox &middot; Switch', img: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1wyo.jpg' },
+      { title: 'World of Warcraft',                sales: 30,  genre: 'RPG / MMORPG',        platforms: 'PC (Windows/Mac)', img: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co2kbe.jpg' },
+      { title: 'Counter-Strike 2',                 sales: 28,  genre: 'Disparos',            platforms: 'PC (Steam)', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/capsule_231x87.jpg' },
+      { title: 'Cyberpunk 2077',                   sales: 25,  genre: 'Action RPG',          platforms: 'PC &middot; PS5/PS4 &middot; Xbox', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/capsule_231x87.jpg' },
+      { title: 'Elden Ring',                       sales: 25,  genre: 'Action RPG',          platforms: 'PC &middot; PS5/PS4 &middot; Xbox', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/capsule_231x87.jpg' },
+      { title: 'Half-Life 2',                      sales: 20,  genre: 'Acción / FPS',        platforms: 'PC', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/220/capsule_231x87.jpg' },
+      { title: 'StarCraft II',                     sales: 18,  genre: 'Estrategia',          platforms: 'PC', img: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1r7m.jpg' },
+      { title: 'Overwatch 2',                      sales: 15,  genre: 'Disparos',            platforms: 'PC &middot; Consolas', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2356940/capsule_231x87.jpg' },
+      { title: 'The Elder Scrolls V: Skyrim',      sales: 15,  genre: 'RPG / Aventura',      platforms: 'PC &middot; Consolas', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/489830/capsule_231x87.jpg' }
+    ];
+
+    const RECENT_GAMES = [
+      { title: 'Black Myth: Wukong',               sales: 20,  genre: 'Hack & Slash / RPG',  platforms: 'PC &middot; PS5 &middot; Xbox', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/capsule_231x87.jpg' },
+      { title: 'Palworld',                         sales: 15,  genre: 'Aventura / Caza',     platforms: 'PC &middot; Xbox &middot; PS5', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1623730/capsule_231x87.jpg' },
+      { title: 'Helldivers 2',                     sales: 12,  genre: 'Disparos / Acción',   platforms: 'PC &middot; PS5', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/553850/capsule_231x87.jpg' },
+      { title: 'Baldur\'s Gate 3',                 sales: 15,  genre: 'RPG',                 platforms: 'PC &middot; PS5 &middot; Xbox', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/capsule_231x87.jpg' },
+      { title: 'Elden Ring: Shadow of the Erdtree',sales: 5,   genre: 'Action RPG',          platforms: 'PC &middot; PS5/PS4 &middot; Xbox', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2778580/capsule_231x87.jpg' },
+      { title: 'Dragon Ball: Sparking! ZERO',      sales: 4,   genre: 'Arcade / Lucha',      platforms: 'PC &middot; PS5 &middot; Xbox', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1790600/capsule_231x87.jpg' },
+      { title: 'Warhammer: Space Marine 2',        sales: 5,   genre: 'Acción / Disparos',   platforms: 'PC &middot; PS5 &middot; Xbox', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2183900/capsule_231x87.jpg' },
+      { title: 'EA Sports FC 25',                  sales: 11,  genre: 'Deportes / Fútbol',   platforms: 'PC &middot; PS5/PS4 &middot; Xbox &middot; Switch', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2669320/capsule_231x87.jpg' },
+      { title: 'Silent Hill 2 Remake',             sales: 2,   genre: 'Terror Psicológico',  platforms: 'PC &middot; PS5', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2124490/capsule_231x87.jpg' },
+      { title: 'Tekken 8',                         sales: 3,   genre: 'Arcade / Lucha',      platforms: 'PC &middot; PS5 &middot; Xbox', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1778820/capsule_231x87.jpg' },
+      { title: 'Final Fantasy XVI',                sales: 4,   genre: 'Action RPG',          platforms: 'PC &middot; PS5', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2718110/capsule_231x87.jpg' },
+      { title: 'God of War Ragnarök',              sales: 15,  genre: 'Hack & Slash',        platforms: 'PC &middot; PS5 &middot; PS4', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2322010/capsule_231x87.jpg' },
+      { title: 'Forza Horizon 5',                  sales: 37,  genre: 'Deportes / Carreras', platforms: 'PC &middot; Xbox', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1551360/capsule_231x87.jpg' },
+      { title: 'Hades II (Early Access)',          sales: 3,   genre: 'Arcade / Roguelike',  platforms: 'PC &middot; Consolas', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1145350/capsule_231x87.jpg' },
+      { title: 'Monster Hunter Wilds (Reservas)',  sales: 3,   genre: 'RPG de Caza',         platforms: 'PC &middot; PS5 &middot; Xbox', img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2246340/capsule_231x87.jpg' }
+    ];
+
+    let currentDataSet = HISTORIC_GAMES;
+
+    function getRankClass(index) {
+      switch (index) {
+        case 0: return 'rank-1';
+        case 1: return 'rank-2';
+        case 2: return 'rank-3';
+        default: return 'rank-other';
+      }
+    }
+
+    function getGenreTagClass(genre) {
+      const g = genre.toLowerCase();
+      if (g.includes('acción') || g.includes('accion')) return 'tag-accion';
+      if (g.includes('disparos')) return 'tag-disparos';
+      if (g.includes('aventura')) return 'tag-aventura';
+      if (g.includes('deportes') || g.includes('carrera')) return 'tag-deportes';
+      return 'tag-aventura';
+    }
+
+    function renderGamesTable(query = '') {
+      const tbody = document.getElementById('gamesTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const maxSales = currentDataSet[0].sales;
+      const filtered = currentDataSet.filter(item => {
+        return !query ||
+               item.title.toLowerCase().includes(query.toLowerCase()) ||
+               item.platforms.toLowerCase().includes(query.toLowerCase());
+      });
+
+      const fragment = document.createDocumentFragment();
+
+      filtered.forEach((game, index) => {
+        const rank = index + 1;
+        const barWidth = Math.min(100, Math.max(12, Math.round((game.sales / maxSales) * 100)));
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>
+            <span class="rank-badge ${getRankClass(index)}">${rank}</span>
+          </td>
+          <td>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <img src="${game.img}" alt="${game.title}" style="width: 70px; height: 35px; object-fit: cover; border-radius: 4px; border: 1px solid rgba(123,47,255,0.4);">
+              <div style="display:flex; flex-direction:column; gap:2px;">
+                <span class="game-name">${game.title}</span>
+                <span style="font-size:0.72rem; color:var(--hg-text-muted);">
+                  <span class="genre-tag ${getGenreTagClass(game.genre)}">${game.genre}</span>
+                </span>
+              </div>
+            </div>
+          </td>
+          <td style="font-size:0.82rem; color:var(--hg-text-muted);">
+            ${game.platforms}
+          </td>
+          <td style="font-family:var(--font-heading); color:var(--hg-secondary); font-size:0.95rem;">
+            ${game.sales}M
+          </td>
+          <td class="d-none d-md-table-cell">
+            <div class="sales-visual">
+              <div class="sales-bar">
+                <div class="sales-bar__fill" style="width: ${barWidth}%;"></div>
+              </div>
+              <span style="font-size:0.75rem; color:var(--hg-text-muted);">${barWidth}%</span>
+            </div>
+          </td>
+        `;
+        fragment.appendChild(tr);
+      });
+
+      tbody.appendChild(fragment);
+    }
+
+    // Manejadores de Pestañas
+    const tabHistoricBtn = document.getElementById('tabHistoricBtn');
+    const tabRecentBtn = document.getElementById('tabRecentBtn');
+    const topSearchInput = document.getElementById('topSearchInput');
+
+    if (tabHistoricBtn && tabRecentBtn) {
+      tabHistoricBtn.addEventListener('click', () => {
+        tabHistoricBtn.classList.add('active');
+        tabRecentBtn.classList.remove('active');
+        currentDataSet = HISTORIC_GAMES;
+        renderGamesTable(topSearchInput ? topSearchInput.value.trim() : '');
+      });
+
+      tabRecentBtn.addEventListener('click', () => {
+        tabRecentBtn.classList.add('active');
+        tabHistoricBtn.classList.remove('active');
+        currentDataSet = RECENT_GAMES;
+        renderGamesTable(topSearchInput ? topSearchInput.value.trim() : '');
+      });
+    }
+
+    if (topSearchInput) {
+      topSearchInput.addEventListener('input', (e) => {
+        renderGamesTable(e.target.value.trim());
+      });
+    }
+
+    // Reloj en Tiempo Real
+    function updateClock() {
+      const now = new Date();
+      const hh  = String(now.getHours()).padStart(2, '0');
+      const mm  = String(now.getMinutes()).padStart(2, '0');
+      const ss  = String(now.getSeconds()).padStart(2, '0');
+      const clockEl = document.getElementById('clock');
+      if (clockEl) clockEl.textContent = `${hh}:${mm}:${ss}`;
+    }
+
+    // Botón Volver Arriba
+    function initBackToTop() {
+      const btn = document.getElementById('backToTop');
+      if (!btn) return;
+      window.addEventListener('scroll', () => {
+        btn.classList.toggle('visible', window.scrollY > 300);
+      }, { passive: true });
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Navbar Scroll
+    function initNavbar() {
+      const navbar = document.querySelector('.hg-navbar');
+      if (!navbar) return;
+      window.addEventListener('scroll', () => {
+        navbar.style.background = window.scrollY > 50
+          ? 'rgba(10,10,15,0.98)'
+          : 'var(--hg-bg-nav)';
+      }, { passive: true });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderGamesTable();
+      updateClock();
+      setInterval(updateClock, 1000);
+      initBackToTop();
+      initNavbar();
+    });
+  </script>
+
+</body>
+</html>

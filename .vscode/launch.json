@@ -5,7 +5,10 @@
         "request": "launch",
         "type": "chrome",
         // "url": "http://localhost:8080",
-        "webRoot": "${workspaceFolder}"
+        "webRoot": "${workspaceFolder}",
+        "configurations": [
+        
+        ]
     }
     // ]
     // Use IntelliSense to learn about possible attributes.

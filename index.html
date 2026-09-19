@@ -1,334 +1,712 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hunter Games — Portal oficial de videojuegos AAA para PC, PlayStation 5, Xbox Series X/S y Nintendo Switch. Lanzamientos 2025 - 2026.">
+  <title>Hunter Games — Videojuegos AAA 2025 / 2026</title>
 
-    <meta charset="utf-8">
-    <title>HUNTER GAMES</title>
-    <!-- CSS only -->
+  <!-- Favicon -->
+  <link rel="icon" href="img/predator.ico">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel=" icon" href="img/predator.ico" />
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Design System -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ecommerce.css">
 </head>
-
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark " style="z-index: 49;">
-        <div class="container-fluid">
-            <nav class="">
-                <div class="container text-center">
-                    <div class="row d-flex justify-content-center">
-                        <a class="navbar-brand" href="#">
-                            <img src="img/predator.jpg" alt="" width="70" height="50">
-                        </a>
-                    </div>
-            </nav>
+  <!-- ============================================
+       NAVBAR PRINCIPAL (100% Responsive & Limpio)
+       ============================================ -->
+  <nav class="navbar navbar-expand-lg fixed-top hg-navbar">
+    <div class="container">
 
-            <a class="navbar-brand" href="#"> Hunter Games </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Foros</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							Genders</a>
+      <!-- Logo / Marca -->
+      <a class="navbar-brand" href="index.html">
+        <img src="img/predator.jpg" alt="Hunter Games logo" class="brand-logo">
+        Hunter <span style="color: var(--hg-primary);">Games</span>
+      </a>
 
+      <!-- Botón de Menú Móvil -->
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false" aria-label="Abrir navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
+      <!-- Enlaces de Navegación -->
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">
+              <i class="bi bi-house-door me-1"></i>Inicio
+            </a>
+          </li>
 
+          <!-- Desplegable de Géneros Conectado al Repositorio -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="genresDropdown"
+               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-controller me-1"></i>Géneros
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="genresDropdown">
+              <li><a class="dropdown-item genre-nav-link" href="#seccion-generos" data-genre="all">Todos los Géneros</a></li>
+              <li><hr class="dropdown-divider" style="border-color: var(--hg-border);"></li>
+              <li><a class="dropdown-item genre-nav-link" href="#seccion-generos" data-genre="accion">Acción</a></li>
+              <li><a class="dropdown-item genre-nav-link" href="#seccion-generos" data-genre="aventura">Aventura</a></li>
+              <li><a class="dropdown-item genre-nav-link" href="#seccion-generos" data-genre="rpg">RPG</a></li>
+              <li><a class="dropdown-item genre-nav-link" href="#seccion-generos" data-genre="hack-slash">Hack &amp; Slash</a></li>
+              <li><a class="dropdown-item genre-nav-link" href="#seccion-generos" data-genre="terror">Terror</a></li>
+              <li><a class="dropdown-item genre-nav-link" href="#seccion-generos" data-genre="deportes">Deportes &amp; Carreras</a></li>
+              <li><a class="dropdown-item genre-nav-link" href="#seccion-generos" data-genre="simuladores">Simuladores</a></li>
+              <li><a class="dropdown-item genre-nav-link" href="#seccion-generos" data-genre="arcade">Arcade &amp; Lucha</a></li>
+              <li><a class="dropdown-item genre-nav-link" href="#seccion-generos" data-genre="disparos">Shooters / Disparos</a></li>
+            </ul>
+          </li>
 
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Accion</a></li>
-                            <li><a class="dropdown-item" href="#">Aventura</a></li>
-                            <li><a class="dropdown-item" href="#">Arcade</a></li>
-                            <li><a class="dropdown-item" href="#">Deportes</a></li>
-                            <li><a class="dropdown-item" href="#">Hack and Slash</a></li>
-                            <li><a class="dropdown-item" href="#">Terror</a></li>
-                            <li><a class="dropdown-item" href="#">Simuladores</a></li>
-                            <li><a class="dropdown-item" href="#">Rpg</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="Galeria.html">
+              <i class="bi bi-images me-1"></i>Galería HD
+            </a>
+          </li>
 
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="lista.html">
+              <i class="bi bi-list-ol me-1"></i>Top Games
+            </a>
+          </li>
 
-                        </ul>
-                    </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">
+              <i class="bi bi-person-circle me-1"></i>Acceder
+            </a>
+          </li>
 
+          <li class="nav-item ms-lg-2">
+            <a class="nav-link position-relative" href="#" id="navCartIcon">
+              <i class="bi bi-cart3" style="font-size: 1.2rem;"></i>
+              <!-- Badge is injected via ecommerce-core.js -->
+            </a>
+          </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="login.html">Acceder</a>
-                    </li>
+        </ul>
 
-                    <button onclick="cambiarColor()">Cambiar Color</button>
-                    <script>
-                        function cambiarColor() {
-                            var cuerpo = document.body;
-                            var colorActual = window.getComputedStyle(cuerpo, null).getPropertyValue('background-color');
+        <!-- Buscador en Vivo -->
+        <form class="d-flex gap-2" role="search" onsubmit="return false;">
+          <input class="form-control search-input" type="search" id="liveSearchInput"
+                 placeholder="Buscar juego, consola o género…" aria-label="Buscar">
+          <button class="btn-search" type="button" id="liveSearchBtn">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
 
-                            // Verificar el color actual y cambiar a blanco o negro
-                            if (colorActual === 'rgb(255, 255, 255)') {
-                                cuerpo.style.backgroundColor = 'black';
-                            } else {
-                                cuerpo.style.backgroundColor = 'white';
-                            }
-                        }
-                    </script>
+      </div>
+    </div>
+  </nav>
 
+  <!-- ============================================
+       HERO CAROUSEL (Cinematográfico, Sin Colisiones)
+       ============================================ -->
+  <div class="page-content">
+    <section class="hero-section">
 
+      <div id="heroCarousel" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="5500">
 
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-            </div>
-    </nav>
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicadores -->
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
         </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="img/dragon.jpg" class="d-block w-100" alt="...">
+
+        <!-- Slides con Artworks Ultra HD -->
+        <div class="carousel-inner h-100">
+
+          <!-- Slide 1: GTA VI -->
+          <div class="carousel-item active h-100">
+            <img src="https://images.alphacoders.com/134/1342618.jpeg" class="d-block" alt="Grand Theft Auto VI" onerror="this.src='img/predator.jpg'">
+            <div class="hero-gradient"></div>
+            <div class="hero-carousel-caption">
+              <span class="hero-badge badge-2026"><i class="bi bi-fire me-1"></i> LANZAMIENTO ESPERADO 2025 - 2026</span>
+              <h2 class="hero-title-main">Grand Theft Auto VI</h2>
+              <p class="hero-desc-text">
+                El regreso más esperado al estado de Leonida y Vice City con Lucia y Jason. Gráficos de última generación en el mundo abierto criminal más ambicioso.
+              </p>
+              <div class="d-flex flex-wrap align-items-center gap-3">
+                <a href="#seccion-generos" class="btn-hg-primary">
+                  <i class="bi bi-grid-3x3-gap-fill me-1"></i> Explorar Catálogo
+                </a>
+                <div class="d-flex gap-2">
+                  <span class="badge-platform badge-plat-ps5"><i class="bi bi-playstation"></i> PS5</span>
+                  <span class="badge-platform badge-plat-xbox"><i class="bi bi-xbox"></i> Xbox Series X/S</span>
+                  <span class="badge-platform badge-plat-pc"><i class="bi bi-windows"></i> PC</span>
+                </div>
+              </div>
             </div>
-            <div class="carousel-item">
-                <img src="img/fifa.jpg" class="d-block w-100" alt="...">
+          </div>
+
+          <!-- Slide 2: Monster Hunter Wilds -->
+          <div class="carousel-item h-100">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2246340/library_hero.jpg" class="d-block" alt="Monster Hunter Wilds" onerror="this.src='img/predator.jpg'">
+            <div class="hero-gradient"></div>
+            <div class="hero-carousel-caption">
+              <span class="hero-badge badge-2025"><i class="bi bi-stars me-1"></i> ESTRENO 2025</span>
+              <h2 class="hero-title-main">Monster Hunter Wilds</h2>
+              <p class="hero-desc-text">
+                Ecosistemas dinámicos de vida salvaje y cacerías extremas con montura Seikret y crossplay completo entre plataformas.
+              </p>
+              <div class="d-flex flex-wrap align-items-center gap-3">
+                <a href="#seccion-generos" class="btn-hg-primary">
+                  <i class="bi bi-controller me-1"></i> Ver en Catálogo
+                </a>
+                <div class="d-flex gap-2">
+                  <span class="badge-platform badge-plat-pc"><i class="bi bi-windows"></i> PC</span>
+                  <span class="badge-platform badge-plat-ps5"><i class="bi bi-playstation"></i> PS5</span>
+                  <span class="badge-platform badge-plat-xbox"><i class="bi bi-xbox"></i> Xbox</span>
+                </div>
+              </div>
             </div>
-            <div class="carousel-item">
-                <img src="img/forza.jpeg" class="d-block w-100" alt="...">
+          </div>
+
+          <!-- Slide 3: DOOM: The Dark Ages -->
+          <div class="carousel-item h-100">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2877010/library_hero.jpg" class="d-block" alt="DOOM The Dark Ages" onerror="this.src='img/predator.jpg'">
+            <div class="hero-gradient"></div>
+            <div class="hero-carousel-caption">
+              <span class="hero-badge badge-2025"><i class="bi bi-lightning-charge me-1"></i> ACCIÓN PURA 2025</span>
+              <h2 class="hero-title-main">DOOM: The Dark Ages</h2>
+              <p class="hero-desc-text">
+                La precuela medieval del Slayer con combate demoníaco implacable, escudo sierra mecánico y dragones cibernéticos.
+              </p>
+              <div class="d-flex flex-wrap align-items-center gap-3">
+                <a href="#seccion-generos" class="btn-hg-primary">
+                  <i class="bi bi-shield-shaded me-1"></i> Ver Ficha
+                </a>
+                <div class="d-flex gap-2">
+                  <span class="badge-platform badge-plat-pc"><i class="bi bi-windows"></i> PC</span>
+                  <span class="badge-platform badge-plat-ps5"><i class="bi bi-playstation"></i> PS5</span>
+                  <span class="badge-platform badge-plat-xbox"><i class="bi bi-xbox"></i> Xbox</span>
+                </div>
+              </div>
             </div>
-            <div class="carousel-item">
-                <img src="img/gta.jpg" class="d-block w-100" alt="...">
+          </div>
+
+          <!-- Slide 4: Black Myth: Wukong -->
+          <div class="carousel-item h-100">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/library_hero.jpg" class="d-block" alt="Black Myth: Wukong" onerror="this.src='img/predator.jpg'">
+            <div class="hero-gradient"></div>
+            <div class="hero-carousel-caption">
+              <span class="hero-badge badge-2024"><i class="bi bi-trophy-fill me-1"></i> ÉXITO MUNDIAL 2024 - 2025</span>
+              <h2 class="hero-title-main">Black Myth: Wukong</h2>
+              <p class="hero-desc-text">
+                El Rey Mono en Unreal Engine 5 con combate de artes marciales vertiginoso y mitología oriental profunda.
+              </p>
+              <div class="d-flex flex-wrap align-items-center gap-3">
+                <a href="#seccion-generos" class="btn-hg-primary">
+                  <i class="bi bi-controller me-1"></i> Ver Detalles
+                </a>
+                <div class="d-flex gap-2">
+                  <span class="badge-platform badge-plat-pc"><i class="bi bi-windows"></i> PC</span>
+                  <span class="badge-platform badge-plat-ps5"><i class="bi bi-playstation"></i> PS5</span>
+                  <span class="badge-platform badge-plat-xbox"><i class="bi bi-xbox"></i> Xbox</span>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <!-- Slide 5: Clair Obscur: Expedition 33 -->
+          <div class="carousel-item h-100">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1903340/library_hero.jpg" class="d-block" alt="Clair Obscur Expedition 33" onerror="this.src='img/predator.jpg'">
+            <div class="hero-gradient"></div>
+            <div class="hero-carousel-caption">
+              <span class="hero-badge badge-2025"><i class="bi bi-magic me-1"></i> NUEVA GENERACIÓN RPG 2025</span>
+              <h2 class="hero-title-main">Clair Obscur: Exp. 33</h2>
+              <p class="hero-desc-text">
+                El RPG reactivo por turnos inspirado en la Belle Époque con gráficos cinemáticos y narrativa conmovedora.
+              </p>
+              <div class="d-flex flex-wrap align-items-center gap-3">
+                <a href="#seccion-generos" class="btn-hg-primary">
+                  <i class="bi bi-journal-bookmark me-1"></i> Ver en Catálogo
+                </a>
+                <div class="d-flex gap-2">
+                  <span class="badge-platform badge-plat-pc"><i class="bi bi-windows"></i> PC</span>
+                  <span class="badge-platform badge-plat-ps5"><i class="bi bi-playstation"></i> PS5</span>
+                  <span class="badge-platform badge-plat-xbox"><i class="bi bi-xbox"></i> Xbox</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Previous</span>
-		</button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Next</span>
-		</button>
+
+        <!-- Controles Prev / Next -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-label="Anterior"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-label="Siguiente"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- ============================================
+         MIGA DE PAN (Breadcrumb)
+         ============================================ -->
+    <div class="hg-breadcrumb">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Hunter Games</a></li>
+            <li class="breadcrumb-item"><a href="#seccion-generos">Catálogo AAA</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Títulos 2024 - 2026 · PC · PS5 · PS4 · Xbox Series X/S · Switch
+            </li>
+          </ol>
+        </nav>
+      </div>
     </div>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">All Games</a></li>
-            <li class="breadcrumb-item"><a href="#">Download</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Download games for PC absolutely free, all uploaded to mega, uploaded, googledrive and torrent</li>
-        </ol>
 
-    </nav>
+    <!-- ============================================
+         PLATAFORMAS DESTACADAS
+         ============================================ -->
+    <section class="section pb-3">
+      <div class="container">
 
-    <div class="container text-align">
-        <div class="row d-flex justify-content">
-
-            <div class="card" style="background-color: #6c6a6a;">
-                <div class="w-25 p-7">
-                    <img src="img/windows.png" class="card-img-top" alt="center">
-                    <div class="card-body">
-                        <h5 class="card-title">Microsoft Windows </h5>
-                        <p class="card-text">Video Juegos para Windows/Linux/Mac</p>
-                        <a href="#" class="btn btn-primary">Games For Windows</a>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="card" style="background-color: #6c6a6a;">
-                <div class="w-25 p-7">
-                    <img src="img/ps4.png" class="card-img-top" alt="center">
-                    <div class="card-body">
-                        <h5 class="card-title">Play Station</h5>
-                        <p class="card-text">Video Juegos para ps4/ps3 </p>
-                        <a href="#" class="btn btn-primary">Games For Play Station</a>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="card" style="background-color: #6c6a6a;">
-                <div class="w-25 p-7">
-                    <img src="img/xbox.jpeg" class="card-img-top" alt="center">
-                    <div class="card-body">
-                        <h5 class="card-title">Xbox</h5>
-                        <p class="card-text">Videos Juegos para Xbox one/360 </p>
-                        <a href="#" class="btn btn-primary">Games for Xbox</a>
-                    </div>
-                </div>
-            </div>
+        <div class="section-header">
+          <span class="section-label">Ecosistemas Disponibles</span>
+          <h2 class="section-title">Elige Tu <span class="highlight">Plataforma</span></h2>
+          <hr class="section-line">
         </div>
+
+        <div class="row g-4">
+
+          <!-- PC -->
+          <div class="col-12 col-md-4">
+            <article class="platform-card" onclick="if(window.hunterCatalogController){ hunterCatalogController._activeCriteria.platform='pc'; hunterCatalogController.render(); document.getElementById('seccion-generos').scrollIntoView({behavior:'smooth'}); }" style="cursor:pointer;">
+              <div class="platform-card__img">
+                <img src="img/windows.png" alt="Juegos para Windows PC">
+              </div>
+              <div class="platform-card__body">
+                <span class="platform-badge badge-pc">
+                  <i class="bi bi-windows"></i> PC Windows &middot; Steam &middot; Epic
+                </span>
+                <h3 class="platform-card__title">Microsoft Windows / PC</h3>
+                <p class="platform-card__desc">
+                  Máximo rendimiento, mods, 4K nativo y tasas de refresco ilimitadas para los títulos de 2025 y 2026.
+                </p>
+                <span class="btn-neon mt-auto">
+                  <i class="bi bi-filter me-1"></i>Ver Juegos para PC
+                </span>
+              </div>
+            </article>
+          </div>
+
+          <!-- PlayStation -->
+          <div class="col-12 col-md-4">
+            <article class="platform-card" onclick="if(window.hunterCatalogController){ hunterCatalogController._activeCriteria.platform='ps5'; hunterCatalogController.render(); document.getElementById('seccion-generos').scrollIntoView({behavior:'smooth'}); }" style="cursor:pointer;">
+              <div class="platform-card__img">
+                <img src="img/ps4.png" alt="Juegos para PlayStation" style="object-fit: contain; background: #121226; padding: 1.2rem;">
+              </div>
+              <div class="platform-card__body">
+                <span class="platform-badge badge-ps">
+                  <i class="bi bi-playstation"></i> PlayStation 5 &middot; PS4 &middot; PS5 Pro
+                </span>
+                <h3 class="platform-card__title">PlayStation</h3>
+                <p class="platform-card__desc">
+                  Exclusivos épicos, retroalimentación háptica DualSense y audio 3D Tempest en los últimos lanzamientos.
+                </p>
+                <span class="btn-neon mt-auto">
+                  <i class="bi bi-filter me-1"></i>Ver Juegos para PlayStation
+                </span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Xbox -->
+          <div class="col-12 col-md-4">
+            <article class="platform-card" onclick="if(window.hunterCatalogController){ hunterCatalogController._activeCriteria.platform='xbox'; hunterCatalogController.render(); document.getElementById('seccion-generos').scrollIntoView({behavior:'smooth'}); }" style="cursor:pointer;">
+              <div class="platform-card__img">
+                <img src="img/xbox.jpeg" alt="Juegos para Xbox">
+              </div>
+              <div class="platform-card__body">
+                <span class="platform-badge badge-xbox">
+                  <i class="bi bi-xbox"></i> Xbox Series X/S &middot; Game Pass
+                </span>
+                <h3 class="platform-card__title">Xbox</h3>
+                <p class="platform-card__desc">
+                  Quick Resume, compatibilidad total y estrenos día 1 en el ecosistema Xbox Series X/S y PC.
+                </p>
+                <span class="btn-neon mt-auto">
+                  <i class="bi bi-filter me-1"></i>Ver Juegos para Xbox
+                </span>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         REPOSITORIO / CATÁLOGO DINÁMICO (POO & RECURSIVO)
+         ============================================ -->
+    <section class="section" id="seccion-generos">
+      <div class="container">
+
+        <div class="section-header text-center">
+          <span class="section-label"><i class="bi bi-cpu-fill me-1"></i> REPOSITORIO INTELIGENTE</span>
+          <h2 class="section-title">Catálogo por <span class="highlight">Géneros, Años &amp; Peso</span></h2>
+          <p class="text-muted-hg mx-auto" style="max-width: 720px; font-size: 0.95rem;">
+            Filtra en tiempo real los mejores títulos AAA para PC, PS5, Xbox Series X/S y Switch mediante algoritmos recursivos y programación orientada a objetos.
+          </p>
+          <hr class="section-line mx-auto">
+        </div>
+
+        <!-- Caja de Filtros Múltiples -->
+        <div class="catalog-filters">
+
+          <!-- 1. Píldoras de Género -->
+          <div class="mb-3">
+            <span class="filter-group-label">
+              <i class="bi bi-tags-fill"></i> Género:
+            </span>
+            <div class="filter-pills-row" id="genrePillContainer">
+              <button class="pill-btn active" data-genre-filter="all"><i class="bi bi-asterisk"></i> Todos</button>
+              <button class="pill-btn" data-genre-filter="accion"><i class="bi bi-crosshair"></i> Acción</button>
+              <button class="pill-btn" data-genre-filter="aventura"><i class="bi bi-compass"></i> Aventura</button>
+              <button class="pill-btn" data-genre-filter="rpg"><i class="bi bi-shield-shaded"></i> RPG</button>
+              <button class="pill-btn" data-genre-filter="hack-slash"><i class="bi bi-lightning-charge"></i> Hack &amp; Slash</button>
+              <button class="pill-btn" data-genre-filter="terror"><i class="bi bi-radioactive"></i> Terror</button>
+              <button class="pill-btn" data-genre-filter="deportes"><i class="bi bi-trophy"></i> Deportes</button>
+              <button class="pill-btn" data-genre-filter="simuladores"><i class="bi bi-airplane"></i> Simuladores</button>
+              <button class="pill-btn" data-genre-filter="arcade"><i class="bi bi-controller"></i> Arcade &amp; Lucha</button>
+              <button class="pill-btn" data-genre-filter="disparos"><i class="bi bi-bullseye"></i> Shooters</button>
+            </div>
+          </div>
+
+          <!-- 2. Píldoras de Consola / Plataforma -->
+          <div class="mb-3">
+            <span class="filter-group-label">
+              <i class="bi bi-display"></i> Consola / Plataforma:
+            </span>
+            <div class="filter-pills-row" id="platformPillContainer">
+              <button class="pill-btn pill-btn-platform active" data-platform-filter="all"><i class="bi bi-globe"></i> Todas</button>
+              <button class="pill-btn pill-btn-platform" data-platform-filter="pc"><i class="bi bi-windows"></i> PC Windows</button>
+              <button class="pill-btn pill-btn-platform" data-platform-filter="ps5"><i class="bi bi-playstation"></i> PS5</button>
+              <button class="pill-btn pill-btn-platform" data-platform-filter="ps4"><i class="bi bi-playstation"></i> PS4</button>
+              <button class="pill-btn pill-btn-platform" data-platform-filter="xbox"><i class="bi bi-xbox"></i> Xbox Series X/S</button>
+              <button class="pill-btn pill-btn-platform" data-platform-filter="switch"><i class="bi bi-nintendo-switch"></i> Switch</button>
+            </div>
+          </div>
+
+          <!-- 3. Controles Desplegables Adicionales (Año, Peso, Orden) -->
+          <div class="row g-3 pt-2 border-top border-secondary border-opacity-25">
+
+            <!-- Filtro por Año -->
+            <div class="col-12 col-sm-6 col-md-4">
+              <label class="filter-group-label mb-1" for="yearFilterSelect">
+                <i class="bi bi-calendar-event"></i> Año de Estreno:
+              </label>
+              <select class="form-select filter-select-control w-100" id="yearFilterSelect" aria-label="Filtrar por año">
+                <option value="all">Todos los Años (2023 - 2026)</option>
+                <option value="2026">2026 (Próximos lanzamientos)</option>
+                <option value="2025">2025 (Novedades)</option>
+                <option value="2024">2024 (Hits actuales)</option>
+                <option value="2023">2023 (Clásicos modernos)</option>
+              </select>
+            </div>
+
+            <!-- Filtro por Peso / Almacenamiento -->
+            <div class="col-12 col-sm-6 col-md-4">
+              <label class="filter-group-label mb-1" for="sizeFilterSelect">
+                <i class="bi bi-hdd-network"></i> Peso / Espacio en Disco:
+              </label>
+              <select class="form-select filter-select-control w-100" id="sizeFilterSelect" aria-label="Filtrar por peso">
+                <option value="all">Todos los Tamaños</option>
+                <option value="under30">Ligero (&lt; 30 GB)</option>
+                <option value="30to70">Medio (30 GB - 70 GB)</option>
+                <option value="70to120">Pesado (70 GB - 120 GB)</option>
+                <option value="over120">Ultra Pesado (&gt; 120 GB)</option>
+              </select>
+            </div>
+
+            <!-- Ordenamiento -->
+            <div class="col-12 col-sm-12 col-md-4">
+              <label class="filter-group-label mb-1" for="sortFilterSelect">
+                <i class="bi bi-sort-down"></i> Ordenar Por:
+              </label>
+              <select class="form-select filter-select-control w-100" id="sortFilterSelect" aria-label="Ordenar juegos">
+                <option value="year-desc">Más Recientes Primero</option>
+                <option value="year-asc">Más Antiguos Primero</option>
+                <option value="size-desc">Mayor Peso (GB)</option>
+                <option value="size-asc">Menor Peso (GB)</option>
+                <option value="rating-desc">Mejor Calificados</option>
+                <option value="title-asc">Alfabético (A - Z)</option>
+              </select>
+            </div>
+
+          </div>
+
+        </div><!-- /catalog-filters -->
+
+        <!-- Barra de Estado de Filtros -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <span style="font-size:0.9rem; color:var(--hg-text-muted);">
+            Resultados: <strong id="filterCounter" class="text-secondary-hg">Cargando catálogo…</strong>
+          </span>
+          <button class="btn-neon" id="resetFiltersBtn" style="padding: 0.35rem 0.9rem; font-size: 0.8rem;">
+            <i class="bi bi-arrow-clockwise me-1"></i>Reiniciar Filtros
+          </button>
+        </div>
+
+        <!-- Grid Dinámico Renderizado por POO / JavaScript -->
+        <div class="row g-4" id="gamesShowcaseGrid">
+          <!-- Las tarjetas de juegos se insertan dinámicamente mediante js/games-repository.js -->
+        </div>
+
+        <!-- Mensaje de Sin Resultados -->
+        <div id="noResultsMsg" class="text-center py-5 d-none">
+          <i class="bi bi-search" style="font-size: 3rem; color: var(--hg-primary);"></i>
+          <h4 class="mt-3" style="font-family: var(--font-heading); color: #fff;">No se encontraron juegos con estos filtros</h4>
+          <p class="text-muted-hg">Prueba cambiando el género, la consola, o el rango de peso en disco.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================
+         RANKING TOP HISTÓRICO
+         ============================================ -->
+    <section class="section pt-2">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="section-label">Estadísticas Globales</span>
+          <h2 class="section-title"><span class="highlight">Top</span> Más Populares</h2>
+          <hr class="section-line">
+        </div>
+
+        <div class="hg-table-wrapper">
+          <table class="hg-table" aria-label="Juegos populares">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Juego</th>
+                <th scope="col">Género</th>
+                <th scope="col">Consolas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="rank-badge rank-1">1</span></td>
+                <td>
+                  <div class="game-info">
+                    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg" alt="Black Myth Wukong" class="game-thumbnail">
+                    <span class="game-name">Black Myth: Wukong</span>
+                  </div>
+                </td>
+                <td><span class="genre-tag tag-accion">Hack &amp; Slash</span></td>
+                <td class="text-muted-hg">PC / PS5 / Xbox</td>
+              </tr>
+              <tr>
+                <td><span class="rank-badge rank-2">2</span></td>
+                <td>
+                  <div class="game-info">
+                    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2322010/header.jpg" alt="God of War Ragnarok" class="game-thumbnail">
+                    <span class="game-name">God of War Ragnarök</span>
+                  </div>
+                </td>
+                <td><span class="genre-tag tag-aventura">Aventura</span></td>
+                <td class="text-muted-hg">PC / PS5 / PS4</td>
+              </tr>
+              <tr>
+                <td><span class="rank-badge rank-3">3</span></td>
+                <td>
+                  <div class="game-info">
+                    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg" alt="Elden Ring" class="game-thumbnail">
+                    <span class="game-name">Elden Ring: Shadow of the Erdtree</span>
+                  </div>
+                </td>
+                <td><span class="genre-tag tag-aventura">RPG</span></td>
+                <td class="text-muted-hg">PC / PS5 / PS4 / Xbox</td>
+              </tr>
+              <tr>
+                <td><span class="rank-badge rank-other">4</span></td>
+                <td>
+                  <div class="game-info">
+                    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2669320/header.jpg" alt="EA FC 25" class="game-thumbnail">
+                    <span class="game-name">EA Sports FC 25</span>
+                  </div>
+                </td>
+                <td><span class="genre-tag tag-deportes">Deportes</span></td>
+                <td class="text-muted-hg">PC / PS5 / PS4 / Xbox / Switch</td>
+              </tr>
+              <tr>
+                <td><span class="rank-badge rank-other">5</span></td>
+                <td>
+                  <div class="game-info">
+                    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2124490/header.jpg" alt="Silent Hill 2" class="game-thumbnail">
+                    <span class="game-name">Silent Hill 2 Remake</span>
+                  </div>
+                </td>
+                <td><span class="genre-tag tag-disparos">Terror</span></td>
+                <td class="text-muted-hg">PC / PS5</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="lista.html" class="btn-hg-primary">
+            <i class="bi bi-trophy-fill me-1"></i> Ver Ranking Top 15 Completo
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================
+         MODAL DE DETALLES DEL JUEGO
+         ============================================ -->
+    <div class="modal fade hg-modal" id="gameDetailModal" tabindex="-1" aria-labelledby="gameModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="gameModalTitle">Detalles del Videojuego</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body p-0">
+            <img id="gameModalImg" src="" alt="Ficha del juego" style="width: 100%; max-height: 380px; object-fit: cover;" onerror="this.onerror=null; this.src='img/predator.jpg';">
+            <div class="p-4">
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                <span id="gameModalYear" class="badge-year badge-2025"></span>
+                <span id="gameModalSize" class="badge-size"></span>
+              </div>
+              <p id="gameModalDesc" class="text-muted-hg" style="font-size: 0.95rem; line-height: 1.6;"></p>
+              <div class="mb-3">
+                <label class="filter-group-label mb-1"><i class="bi bi-display"></i> Consolas Compatibles:</label>
+                <div id="gameModalPlatforms" class="d-flex flex-wrap gap-2"></div>
+              </div>
+              <div>
+                <label class="filter-group-label mb-1"><i class="bi bi-stars"></i> Tecnologías &amp; Características:</label>
+                <div id="gameModalFeatures" class="d-flex flex-wrap gap-1"></div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-top: 1px solid var(--hg-border);">
+            <button type="button" class="btn-hg-outline" data-bs-dismiss="modal">Cerrar</button>
+            <a href="lista.html" class="btn-hg-primary"><i class="bi bi-download me-1"></i>Descargar Ficha</a>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="hg-footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-12 col-md-4">
+            <a href="index.html" class="footer-brand d-block mb-1">Hunter Games</a>
+            <p class="footer-tagline">Tu portal de videojuegos gratuitos en alta definición.</p>
+          </div>
+          <div class="col-6 col-md-2">
+            <p class="field-label mb-2">Páginas</p>
+            <nav class="footer-nav">
+              <a href="index.html">Inicio</a>
+              <a href="lista.html">Top Games</a>
+              <a href="Galeria.html">Galería HD</a>
+              <a href="login.html">Acceder</a>
+            </nav>
+          </div>
+          <div class="col-6 col-md-3">
+            <p class="field-label mb-2">Géneros</p>
+            <nav class="footer-nav">
+              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController.setGenreFromNavbar('accion'); }">Acción</a>
+              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController.setGenreFromNavbar('rpg'); }">RPG</a>
+              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController.setGenreFromNavbar('terror'); }">Terror</a>
+              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController.setGenreFromNavbar('deportes'); }">Deportes</a>
+            </nav>
+          </div>
+          <div class="col-6 col-md-3">
+            <p class="field-label mb-2">Consolas</p>
+            <nav class="footer-nav">
+              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController._activeCriteria.platform='pc'; hunterCatalogController.render(); document.getElementById('seccion-generos').scrollIntoView({behavior:'smooth'}); }">PC Windows</a>
+              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController._activeCriteria.platform='ps5'; hunterCatalogController.render(); document.getElementById('seccion-generos').scrollIntoView({behavior:'smooth'}); }">PlayStation 5</a>
+              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController._activeCriteria.platform='xbox'; hunterCatalogController.render(); document.getElementById('seccion-generos').scrollIntoView({behavior:'smooth'}); }">Xbox Series X/S</a>
+              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController._activeCriteria.platform='switch'; hunterCatalogController.render(); document.getElementById('seccion-generos').scrollIntoView({behavior:'smooth'}); }">Nintendo Switch</a>
+            </nav>
+          </div>
+        </div>
+        <p class="footer-copy">
+          <i class="bi bi-controller me-1"></i>
+          Copyright &copy; Hunter Games 2024 - 2026 — Todos los derechos reservados
+        </p>
+      </div>
+    </footer>
 
+  </div><!-- /page-content -->
 
+  <!-- Botón Volver Arriba -->
+  <button id="backToTop" aria-label="Volver arriba" title="Volver arriba">
+    <i class="bi bi-arrow-up"></i>
+  </button>
 
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Módulos Core E-commerce y Repositorio -->
+  <script src="js/ecommerce-core.js"></script>
+  <script src="js/games-repository.js"></script>
 
-    <div class="container text-center">
-        <div class="row d-flex justify-content-center">
-            <!-- Content here -->
+  <!-- Inicialización específica de página -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Enlazar el ícono del nav con el carrito una vez inyectado
+      if (window.ecommerceApp && window.ecommerceApp.cartUI) {
+        window.ecommerceApp.cartUI.bindCartIcon('navCartIcon');
+      }
+    });
+  </script>
 
+  <!-- Efectos de Navegación y Scroll -->
+  <script>
+    // Botón Volver Arriba
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }, { passive: true });
 
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-            <h9>
-                <table class="table table-dark table-sm">
-                    <tr class="table-primary">
-                        <th>Populares</th>
-                        <th>Nombre</th>
-                        <th>Genero</th>
-                    </tr>
+    // Efecto de fondo Navbar con scroll
+    const navbar = document.querySelector('.hg-navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(10,10,15,0.98)';
+      } else {
+        navbar.style.background = 'var(--hg-bg-nav)';
+      }
+    }, { passive: true });
+  </script>
 
-
-
-                    <tr>
-                        <!--img src="img/pes.jpg" class="d-block w-100" alt="..."-->
-                        <td>1
-                            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                                <div class="container-fluid">
-                                    <nav class="">
-                                        <div class="container">
-                                            <a class="navbar-brand" href="#">
-                                                <img src="img/pes.jpg" alt="" width="400" height="150" style="background-color: #021d26;">
-                                            </a>
-                                        </div>
-                                    </nav>
-                        </td>
-
-
-
-                        <th>Pro evolution soccer 2023 </th>
-                        <td>Deportes</td>
-                    </tr>
-
-                    <tr>
-                        <td>2
-                            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                                <div class="container-fluid">
-                                    <nav class="">
-                                        <div class="container">
-                                            <a class="navbar-brand" href="#">
-                                                <img src="img/mortal kombat.jpg" alt="" width="400" height="150" style="background-color: #7b8383;">
-                                            </a>
-                                        </div>
-                                    </nav>
-                        </td>
-                        <th>Mortal kombat 11 </th>
-                        <td>Accion</td>
-                    </tr>
-                    <tr>
-                        <td>3
-                            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                                <div class="container-fluid">
-                                    <nav class="">
-                                        <div class="container">
-                                            <a class="navbar-brand" href="#">
-                                                <img src="img/farcry.png" alt="" width="400" height="150">
-                                            </a>
-                                        </div>
-                                    </nav>
-                        </td>
-                        <th>Far cry 3</th>
-                        <td>Accion</td>
-                    </tr>
-
-                    <tr>
-                        <td>4
-                            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                                <div class="container-fluid">
-                                    <nav class="">
-                                        <div class="container">
-                                            <a class="navbar-brand" href="#">
-                                                <img src="img/godofwar.jpg" alt="" width="400" height="150">
-                                            </a>
-                                        </div>
-                                    </nav>
-                        </td>
-                        <th>God of war 4</th>
-                        <td>Accion / Aventura</td>
-                    </tr>
-
-                    <td>5
-                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                            <div class="container-fluid">
-                                <nav class="">
-                                    <div class="container">
-                                        <a class="navbar-brand" href="#">
-                                            <img src="img/halo.jpg" alt="" width="400" height="150">
-                                        </a>
-                                    </div>
-                                </nav>
-                    </td>
-                    <th>Halo</th>
-                    <td>Accion / Disparos</td>
-                    </tr>
-
-
-                    <td>6
-                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                            <div class="container-fluid">
-                                <nav class="">
-                                    <div class="container">
-                                        <a class="navbar-brand" href="#">
-                                            <img src="img/Castlevania.jpg" alt="" width="400" height="150">
-                                        </a>
-                                    </div>
-                                </nav>
-                    </td>
-                    <th>Castlevania 2</th>
-                    <td>Accion / Aventura</td>
-                    </tr>
-                    </div>
-
-
-
-                </table>
-
-                <a href="#" class="btn btn-primary">Top 100 GAMES</a>
-
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Ultimo</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-
-                </div>
-
-                <footer class="py-6 bg-dark ">
-                    <div class="container">
-                        <p class="m-1 text-center text-white">Copyright © HUNTER GAMES 2023</p>
-                    </div>
-                    <!-- /.container -->
-                </footer>
-
-
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
