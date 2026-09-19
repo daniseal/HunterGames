@@ -895,6 +895,14 @@ class CatalogController {
     if (modalEl && window.bootstrap) {
       const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
       modal.show();
+
+      // Garantizar que los botones de cierre funcionen sin fallo
+      modalEl.querySelectorAll('[data-bs-dismiss="modal"]').forEach(btn => {
+        btn.onclick = (e) => {
+          e.preventDefault();
+          modal.hide();
+        };
+      });
     }
   }
 }

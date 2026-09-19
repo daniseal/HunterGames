@@ -576,41 +576,6 @@
       </div>
     </section>
 
-    <!-- ============================================
-         MODAL DE DETALLES DEL JUEGO
-         ============================================ -->
-    <div class="modal fade hg-modal" id="gameDetailModal" tabindex="-1" aria-labelledby="gameModalTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="gameModalTitle">Detalles del Videojuego</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body p-0">
-            <img id="gameModalImg" src="" alt="Ficha del juego" style="width: 100%; max-height: 380px; object-fit: cover;" onerror="this.onerror=null; this.src='img/predator.jpg';">
-            <div class="p-4">
-              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
-                <span id="gameModalYear" class="badge-year badge-2025"></span>
-                <span id="gameModalSize" class="badge-size"></span>
-              </div>
-              <p id="gameModalDesc" class="text-muted-hg" style="font-size: 0.95rem; line-height: 1.6;"></p>
-              <div class="mb-3">
-                <label class="filter-group-label mb-1"><i class="bi bi-display"></i> Consolas Compatibles:</label>
-                <div id="gameModalPlatforms" class="d-flex flex-wrap gap-2"></div>
-              </div>
-              <div>
-                <label class="filter-group-label mb-1"><i class="bi bi-stars"></i> Tecnologías &amp; Características:</label>
-                <div id="gameModalFeatures" class="d-flex flex-wrap gap-1"></div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer" style="border-top: 1px solid var(--hg-border);">
-            <button type="button" class="btn-hg-outline" data-bs-dismiss="modal">Cerrar</button>
-            <a href="lista.html" class="btn-hg-primary"><i class="bi bi-download me-1"></i>Descargar Ficha</a>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- ============================================
          FOOTER
@@ -659,6 +624,42 @@
 
   </div><!-- /page-content -->
 
+  <!-- ============================================
+       MODAL DE DETALLES DEL JUEGO (Nivel Raíz para Evitar Conflictos de Capas)
+       ============================================ -->
+  <div class="modal fade hg-modal" id="gameDetailModal" tabindex="-1" aria-labelledby="gameModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="gameModalTitle">Detalles del Videojuego</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" id="closeGameModalTop"></button>
+        </div>
+        <div class="modal-body p-0">
+          <img id="gameModalImg" src="" alt="Ficha del juego" style="width: 100%; max-height: 380px; object-fit: cover;" onerror="this.onerror=null; this.src='img/predator.jpg';">
+          <div class="p-4">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+              <span id="gameModalYear" class="badge-year badge-2025"></span>
+              <span id="gameModalSize" class="badge-size"></span>
+            </div>
+            <p id="gameModalDesc" class="text-muted-hg" style="font-size: 0.95rem; line-height: 1.6;"></p>
+            <div class="mb-3">
+              <label class="filter-group-label mb-1"><i class="bi bi-display"></i> Consolas Compatibles:</label>
+              <div id="gameModalPlatforms" class="d-flex flex-wrap gap-2"></div>
+            </div>
+            <div>
+              <label class="filter-group-label mb-1"><i class="bi bi-stars"></i> Tecnologías &amp; Características:</label>
+              <div id="gameModalFeatures" class="d-flex flex-wrap gap-1"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" style="border-top: 1px solid var(--hg-border);">
+          <button type="button" class="btn-hg-outline" data-bs-dismiss="modal" id="closeGameModalBottom"><i class="bi bi-x-lg me-1"></i>Cerrar</button>
+          <a href="lista.html" class="btn-hg-primary"><i class="bi bi-download me-1"></i>Descargar Ficha</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Botón Volver Arriba -->
   <button id="backToTop" aria-label="Volver arriba" title="Volver arriba">
     <i class="bi bi-arrow-up"></i>
@@ -677,6 +678,18 @@
       // Enlazar el ícono del nav con el carrito una vez inyectado
       if (window.ecommerceApp && window.ecommerceApp.cartUI) {
         window.ecommerceApp.cartUI.bindCartIcon('navCartIcon');
+      }
+
+      // Garantizar cierre instantáneo del modal de detalles de juego
+      const gameModalEl = document.getElementById('gameDetailModal');
+      if (gameModalEl) {
+        gameModalEl.querySelectorAll('[data-bs-dismiss="modal"]').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const modal = bootstrap.Modal.getOrCreateInstance(gameModalEl);
+            modal.hide();
+          });
+        });
       }
     });
   </script>
