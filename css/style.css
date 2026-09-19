@@ -505,6 +505,64 @@ img {
   position: relative;
 }
 
+.platform-visual {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.platform-card:hover .platform-visual {
+  transform: scale(1.05);
+}
+
+.platform-visual--pc {
+  background: radial-gradient(circle at center, rgba(0, 245, 212, 0.28) 0%, rgba(10, 15, 25, 0.95) 75%);
+  border-bottom: 2px solid rgba(0, 245, 212, 0.4);
+}
+
+.platform-visual--ps5 {
+  background: radial-gradient(circle at center, rgba(0, 102, 255, 0.35) 0%, rgba(8, 12, 30, 0.95) 75%);
+  border-bottom: 2px solid rgba(0, 102, 255, 0.5);
+}
+
+.platform-visual--ps4 {
+  background: radial-gradient(circle at center, rgba(30, 80, 220, 0.3) 0%, rgba(10, 14, 28, 0.95) 75%);
+  border-bottom: 2px solid rgba(30, 80, 220, 0.45);
+}
+
+.platform-visual--xbox {
+  background: radial-gradient(circle at center, rgba(16, 185, 129, 0.3) 0%, rgba(8, 20, 14, 0.95) 75%);
+  border-bottom: 2px solid rgba(16, 185, 129, 0.45);
+}
+
+.platform-visual--switch {
+  background: radial-gradient(circle at 30% 50%, rgba(239, 68, 68, 0.35) 0%, transparent 65%),
+              radial-gradient(circle at 70% 50%, rgba(14, 165, 233, 0.35) 0%, rgba(15, 10, 22, 0.95) 75%);
+  border-bottom: 2px solid rgba(239, 68, 68, 0.45);
+}
+
+.platform-visual-icon {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 0 16px currentColor);
+  margin-bottom: 0.35rem;
+}
+
+.platform-visual-label {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0.9;
+}
+
 .platform-card__img img {
   width: 100%;
   height: 100%;
@@ -520,7 +578,8 @@ img {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 40%, var(--hg-bg-card) 100%);
+  background: linear-gradient(to bottom, transparent 45%, var(--hg-bg-card) 100%);
+  pointer-events: none;
 }
 
 .platform-card__body {
@@ -543,9 +602,10 @@ img {
   margin-bottom: 0.75rem;
 }
 
-.badge-pc   { background: rgba(0,245,212,0.12); color: var(--hg-secondary); border: 1px solid rgba(0,245,212,0.3); }
-.badge-ps   { background: rgba(30,80,220,0.18); color: #5ba3ff;             border: 1px solid rgba(30,80,220,0.35); }
-.badge-xbox { background: rgba(16,130,16,0.18); color: #5ef769;             border: 1px solid rgba(16,130,16,0.35); }
+.badge-pc     { background: rgba(0,245,212,0.12); color: var(--hg-secondary); border: 1px solid rgba(0,245,212,0.3); }
+.badge-ps     { background: rgba(30,80,220,0.18); color: #5ba3ff;             border: 1px solid rgba(30,80,220,0.35); }
+.badge-xbox   { background: rgba(16,130,16,0.18); color: #5ef769;             border: 1px solid rgba(16,130,16,0.35); }
+.badge-switch { background: rgba(230,0,18,0.18);  color: #ff5e6c;             border: 1px solid rgba(230,0,18,0.35); }
 
 .platform-card__title {
   font-family: var(--font-heading);
@@ -1210,6 +1270,7 @@ img {
 .badge-plat-ps5    { background: rgba(0,102,255,0.18); color: #60a5fa; border: 1px solid rgba(0,102,255,0.4); }
 .badge-plat-ps4    { background: rgba(30,80,220,0.12); color: #93c5fd; border: 1px solid rgba(30,80,220,0.3); }
 .badge-plat-xbox   { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.4); }
+.badge-plat-xboxone{ background: rgba(5,150,105,0.15); color: #6ee7b7; border: 1px solid rgba(5,150,105,0.35); }
 .badge-plat-switch { background: rgba(239,68,68,0.18); color: #f87171; border: 1px solid rgba(239,68,68,0.4); }
 
 /* Game Showcase Card */

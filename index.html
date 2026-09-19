@@ -289,21 +289,24 @@
           <hr class="section-line">
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4 justify-content-center">
 
           <!-- PC -->
-          <div class="col-12 col-md-4">
-            <article class="platform-card" onclick="if(window.hunterCatalogController){ hunterCatalogController._activeCriteria.platform='pc'; hunterCatalogController.render(); document.getElementById('seccion-generos').scrollIntoView({behavior:'smooth'}); }" style="cursor:pointer;">
+          <div class="col-12 col-md-6 col-lg-4 col-xl">
+            <article class="platform-card" onclick="if(window.hunterCatalogController){ hunterCatalogController.setPlatform('pc'); }" style="cursor:pointer;">
               <div class="platform-card__img">
-                <img src="img/windows.png" alt="Juegos para Windows PC">
+                <div class="platform-visual platform-visual--pc">
+                  <i class="bi bi-windows platform-visual-icon" style="color: var(--hg-secondary);"></i>
+                  <span class="platform-visual-label">PC Windows &middot; Steam</span>
+                </div>
               </div>
               <div class="platform-card__body">
                 <span class="platform-badge badge-pc">
-                  <i class="bi bi-windows"></i> PC Windows &middot; Steam &middot; Epic
+                  <i class="bi bi-windows"></i> PC &middot; Steam &middot; Epic
                 </span>
                 <h3 class="platform-card__title">Microsoft Windows / PC</h3>
                 <p class="platform-card__desc">
-                  Máximo rendimiento, mods, 4K nativo y tasas de refresco ilimitadas para los títulos de 2025 y 2026.
+                  Máximo rendimiento, mods, 4K nativo y tasas de refresco ilimitadas en Steam, Epic y GOG.
                 </p>
                 <span class="btn-neon mt-auto">
                   <i class="bi bi-filter me-1"></i>Ver Juegos para PC
@@ -312,43 +315,97 @@
             </article>
           </div>
 
-          <!-- PlayStation -->
-          <div class="col-12 col-md-4">
-            <article class="platform-card" onclick="if(window.hunterCatalogController){ hunterCatalogController._activeCriteria.platform='ps5'; hunterCatalogController.render(); document.getElementById('seccion-generos').scrollIntoView({behavior:'smooth'}); }" style="cursor:pointer;">
+          <!-- PlayStation 5 -->
+          <div class="col-12 col-md-6 col-lg-4 col-xl">
+            <article class="platform-card" onclick="if(window.hunterCatalogController){ hunterCatalogController.setPlatform('ps5'); }" style="cursor:pointer;">
               <div class="platform-card__img">
-                <img src="img/ps4.png" alt="Juegos para PlayStation" style="object-fit: contain; background: #121226; padding: 1.2rem;">
+                <div class="platform-visual platform-visual--ps5">
+                  <i class="bi bi-playstation platform-visual-icon" style="color: #60a5fa;"></i>
+                  <span class="platform-visual-label">PlayStation 5 Pro</span>
+                </div>
               </div>
               <div class="platform-card__body">
                 <span class="platform-badge badge-ps">
-                  <i class="bi bi-playstation"></i> PlayStation 5 &middot; PS4 &middot; PS5 Pro
+                  <i class="bi bi-playstation"></i> PS5 &middot; PS5 Pro
                 </span>
-                <h3 class="platform-card__title">PlayStation</h3>
+                <h3 class="platform-card__title">PlayStation 5</h3>
                 <p class="platform-card__desc">
-                  Exclusivos épicos, retroalimentación háptica DualSense y audio 3D Tempest en los últimos lanzamientos.
+                  Exclusivos de última generación, retroalimentación háptica DualSense y audio 3D Tempest.
                 </p>
                 <span class="btn-neon mt-auto">
-                  <i class="bi bi-filter me-1"></i>Ver Juegos para PlayStation
+                  <i class="bi bi-filter me-1"></i>Ver Juegos para PS5
                 </span>
               </div>
             </article>
           </div>
 
-          <!-- Xbox -->
-          <div class="col-12 col-md-4">
-            <article class="platform-card" onclick="if(window.hunterCatalogController){ hunterCatalogController._activeCriteria.platform='xbox'; hunterCatalogController.render(); document.getElementById('seccion-generos').scrollIntoView({behavior:'smooth'}); }" style="cursor:pointer;">
+          <!-- PlayStation 4 -->
+          <div class="col-12 col-md-6 col-lg-4 col-xl">
+            <article class="platform-card" onclick="if(window.hunterCatalogController){ hunterCatalogController.setPlatform('ps4'); }" style="cursor:pointer;">
               <div class="platform-card__img">
-                <img src="img/xbox.jpeg" alt="Juegos para Xbox">
+                <div class="platform-visual platform-visual--ps4">
+                  <i class="bi bi-playstation platform-visual-icon" style="color: #93c5fd;"></i>
+                  <span class="platform-visual-label">PlayStation 4 Pro</span>
+                </div>
+              </div>
+              <div class="platform-card__body">
+                <span class="platform-badge badge-ps" style="border-color: rgba(96,165,250,0.4); color: #93c5fd;">
+                  <i class="bi bi-playstation"></i> PS4 &middot; PS4 Pro
+                </span>
+                <h3 class="platform-card__title">PlayStation 4</h3>
+                <p class="platform-card__desc">
+                  El legendario catálogo con los mayores clásicos y éxitos de la historia de los videojuegos.
+                </p>
+                <span class="btn-neon mt-auto">
+                  <i class="bi bi-filter me-1"></i>Ver Juegos para PS4
+                </span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Xbox Series X/S & Xbox One -->
+          <div class="col-12 col-md-6 col-lg-4 col-xl">
+            <article class="platform-card" onclick="if(window.hunterCatalogController){ hunterCatalogController.setPlatform('xbox'); }" style="cursor:pointer;">
+              <div class="platform-card__img">
+                <div class="platform-visual platform-visual--xbox">
+                  <i class="bi bi-xbox platform-visual-icon" style="color: #34d399;"></i>
+                  <span class="platform-visual-label">Xbox Series &amp; One</span>
+                </div>
               </div>
               <div class="platform-card__body">
                 <span class="platform-badge badge-xbox">
-                  <i class="bi bi-xbox"></i> Xbox Series X/S &middot; Game Pass
+                  <i class="bi bi-xbox"></i> Series X/S &middot; Xbox One
                 </span>
-                <h3 class="platform-card__title">Xbox</h3>
+                <h3 class="platform-card__title">Xbox Series &amp; One</h3>
                 <p class="platform-card__desc">
-                  Quick Resume, compatibilidad total y estrenos día 1 en el ecosistema Xbox Series X/S y PC.
+                  Quick Resume, compatibilidad con 4 generaciones y estrenos día 1 en Xbox Game Pass.
                 </p>
                 <span class="btn-neon mt-auto">
                   <i class="bi bi-filter me-1"></i>Ver Juegos para Xbox
+                </span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Nintendo Switch -->
+          <div class="col-12 col-md-6 col-lg-4 col-xl">
+            <article class="platform-card" onclick="if(window.hunterCatalogController){ hunterCatalogController.setPlatform('switch'); }" style="cursor:pointer;">
+              <div class="platform-card__img">
+                <div class="platform-visual platform-visual--switch">
+                  <i class="bi bi-nintendo-switch platform-visual-icon" style="color: #ff5e6c;"></i>
+                  <span class="platform-visual-label">Nintendo Switch</span>
+                </div>
+              </div>
+              <div class="platform-card__body">
+                <span class="platform-badge badge-switch">
+                  <i class="bi bi-nintendo-switch"></i> Switch &middot; OLED &middot; TV
+                </span>
+                <h3 class="platform-card__title">Nintendo Switch</h3>
+                <p class="platform-card__desc">
+                  Juega en modo portátil o televisión con las sagas más galardonadas de Nintendo y multiplay.
+                </p>
+                <span class="btn-neon mt-auto">
+                  <i class="bi bi-filter me-1"></i>Ver Juegos Switch
                 </span>
               </div>
             </article>
@@ -405,8 +462,9 @@
               <button class="pill-btn pill-btn-platform" data-platform-filter="pc"><i class="bi bi-windows"></i> PC Windows</button>
               <button class="pill-btn pill-btn-platform" data-platform-filter="ps5"><i class="bi bi-playstation"></i> PS5</button>
               <button class="pill-btn pill-btn-platform" data-platform-filter="ps4"><i class="bi bi-playstation"></i> PS4</button>
-              <button class="pill-btn pill-btn-platform" data-platform-filter="xbox"><i class="bi bi-xbox"></i> Xbox Series X/S</button>
-              <button class="pill-btn pill-btn-platform" data-platform-filter="switch"><i class="bi bi-nintendo-switch"></i> Switch</button>
+              <button class="pill-btn pill-btn-platform" data-platform-filter="xbox"><i class="bi bi-xbox"></i> Xbox Series</button>
+              <button class="pill-btn pill-btn-platform" data-platform-filter="xbox-one"><i class="bi bi-xbox"></i> Xbox One</button>
+              <button class="pill-btn pill-btn-platform" data-platform-filter="switch"><i class="bi bi-nintendo-switch"></i> Nintendo Switch</button>
             </div>
           </div>
 
@@ -608,10 +666,12 @@
           <div class="col-6 col-md-3">
             <p class="field-label mb-2">Consolas</p>
             <nav class="footer-nav">
-              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController._activeCriteria.platform='pc'; hunterCatalogController.render(); document.getElementById('seccion-generos').scrollIntoView({behavior:'smooth'}); }">PC Windows</a>
-              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController._activeCriteria.platform='ps5'; hunterCatalogController.render(); document.getElementById('seccion-generos').scrollIntoView({behavior:'smooth'}); }">PlayStation 5</a>
-              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController._activeCriteria.platform='xbox'; hunterCatalogController.render(); document.getElementById('seccion-generos').scrollIntoView({behavior:'smooth'}); }">Xbox Series X/S</a>
-              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController._activeCriteria.platform='switch'; hunterCatalogController.render(); document.getElementById('seccion-generos').scrollIntoView({behavior:'smooth'}); }">Nintendo Switch</a>
+              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController.setPlatform('pc'); }">PC Windows</a>
+              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController.setPlatform('ps5'); }">PlayStation 5</a>
+              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController.setPlatform('ps4'); }">PlayStation 4</a>
+              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController.setPlatform('xbox'); }">Xbox Series X/S</a>
+              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController.setPlatform('xbox-one'); }">Xbox One</a>
+              <a href="#seccion-generos" onclick="if(window.hunterCatalogController){ hunterCatalogController.setPlatform('switch'); }">Nintendo Switch</a>
             </nav>
           </div>
         </div>
@@ -635,7 +695,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" id="closeGameModalTop"></button>
         </div>
         <div class="modal-body p-0">
-          <img id="gameModalImg" src="" alt="Ficha del juego" style="width: 100%; max-height: 380px; object-fit: cover;" onerror="this.onerror=null; this.src='img/predator.jpg';">
+          <img id="gameModalImg" src="" alt="Ficha del juego" style="width: 100%; max-height: 380px; object-fit: cover;" onerror="this.onerror=null; this.src='https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/header.jpg';">
           <div class="p-4">
             <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
               <span id="gameModalYear" class="badge-year badge-2025"></span>
