@@ -660,6 +660,63 @@
     </div>
   </div>
 
+  <!-- Widget Flotante de Limpieza de Caché y Diagnóstico -->
+  <div id="cacheControlWidget" class="cache-control-widget">
+    <button type="button" class="btn-cache-cleaner" id="openCacheModalBtn" title="Limpieza de Caché y Diagnóstico" data-bs-toggle="modal" data-bs-target="#cacheManagerModal">
+      <i class="bi bi-lightning-charge-fill"></i>
+      <span>Limpiar Caché</span>
+    </button>
+  </div>
+
+  <!-- Modal de Limpieza de Caché y Rendimiento -->
+  <div class="modal fade hg-modal" id="cacheManagerModal" tabindex="-1" aria-labelledby="cacheModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background: rgba(14, 14, 26, 0.98); border: 1px solid var(--hg-secondary); box-shadow: 0 0 35px rgba(0, 245, 212, 0.25);">
+        <div class="modal-header">
+          <h5 class="modal-title d-flex align-items-center gap-2" id="cacheModalTitle" style="color: var(--hg-secondary);">
+            <i class="bi bi-speedometer2"></i> Optimización &amp; Limpieza de Caché
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body p-4">
+          <p class="text-muted-hg mb-3" style="font-size: 0.88rem;">
+            Si el sitio tarda en arrancar o notas que alguna imagen no corresponde o está desactualizada en tu navegador, purga la caché local con estas herramientas integradas:
+          </p>
+          <div class="cache-info-box mb-3 p-3 rounded" style="background: rgba(8, 8, 16, 0.8); border: 1px solid var(--hg-border);">
+            <div class="d-flex justify-content-between mb-1" style="font-size: 0.82rem;">
+              <span class="text-muted-hg">Caché API / Catálogo:</span>
+              <span id="cacheStatusApi" class="text-info font-monospace">Verificando...</span>
+            </div>
+            <div class="d-flex justify-content-between mb-1" style="font-size: 0.82rem;">
+              <span class="text-muted-hg">Imágenes y Recursos:</span>
+              <span class="text-success font-monospace">Activo (Memoria Local)</span>
+            </div>
+            <div class="d-flex justify-content-between" style="font-size: 0.82rem;">
+              <span class="text-muted-hg">Almacenamiento Local:</span>
+              <span id="cacheStatusStorage" class="text-warning font-monospace">Calculando...</span>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="button" class="btn-hg-primary w-100 py-2" id="btnPurgeCacheNow">
+              <i class="bi bi-arrow-clockwise me-1"></i> Purgar Caché del Navegador y Recargar
+            </button>
+            <button type="button" class="btn-hg-outline w-100 py-2" id="btnResetApiOnly">
+              <i class="bi bi-cpu me-1"></i> Restablecer Catálogo Local (Arranque Instantáneo)
+            </button>
+          </div>
+
+          <div class="mt-3 p-2 rounded" style="background: rgba(123, 47, 255, 0.08); border: 1px dashed rgba(123, 47, 255, 0.4); font-size: 0.78rem;">
+            <strong class="text-info"><i class="bi bi-terminal me-1"></i>Herramienta Python CLI:</strong>
+            <p class="text-muted-hg mb-0 mt-1">
+              También puedes ejecutar en tu terminal: <code class="text-warning">python limpiar_cache.py</code> para limpiar archivos temporales locales del sistema y servidor.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Botón Volver Arriba -->
   <button id="backToTop" aria-label="Volver arriba" title="Volver arriba">
     <i class="bi bi-arrow-up"></i>
@@ -689,6 +746,69 @@
             const modal = bootstrap.Modal.getOrCreateInstance(gameModalEl);
             modal.hide();
           });
+        });
+      }
+
+      // Controlador de Limpieza de Caché
+      const cacheModalEl = document.getElementById('cacheManagerModal');
+      const apiStatus = document.getElementById('cacheStatusApi');
+      const storageStatus = document.getElementById('cacheStatusStorage');
+      const btnPurge = document.getElementById('btnPurgeCacheNow');
+      const btnResetApi = document.getElementById('btnResetApiOnly');
+
+      function updateCacheStats() {
+        if (apiStatus) {
+          const cached = sessionStorage.getItem('hunter_cached_api_games');
+          apiStatus.textContent = cached ? 'Caché Activa (Instantáneo)' : 'Sin Caché (Directo)';
+        }
+        if (storageStatus) {
+          let totalBytes = 0;
+          for (let key in localStorage) {
+            if (localStorage.hasOwnProperty(key)) {
+              totalBytes += ((localStorage[key].length + key.length) * 2);
+            }
+          }
+          storageStatus.textContent = `${(totalBytes / 1024).toFixed(2)} KB en uso`;
+        }
+      }
+
+      if (cacheModalEl) {
+        cacheModalEl.addEventListener('show.bs.modal', updateCacheStats);
+        cacheModalEl.querySelectorAll('[data-bs-dismiss="modal"]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            bootstrap.Modal.getOrCreateInstance(cacheModalEl).hide();
+          });
+        });
+      }
+
+      if (btnPurge) {
+        btnPurge.addEventListener('click', async () => {
+          btnPurge.disabled = true;
+          btnPurge.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Purgando Caché...';
+          try {
+            sessionStorage.clear();
+            const cart = localStorage.getItem('hunter_games_cart');
+            localStorage.clear();
+            if (cart) localStorage.setItem('hunter_games_cart', cart);
+            if ('caches' in window) {
+              const keys = await caches.keys();
+              await Promise.all(keys.map(k => caches.delete(k)));
+            }
+            btnPurge.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i>¡Caché Purgada! Recargando...';
+            setTimeout(() => {
+              window.location.href = window.location.pathname + '?purge=' + Date.now();
+            }, 600);
+          } catch (e) {
+            window.location.reload();
+          }
+        });
+      }
+
+      if (btnResetApi) {
+        btnResetApi.addEventListener('click', () => {
+          sessionStorage.removeItem('hunter_cached_api_games');
+          sessionStorage.removeItem('hunter_cached_api_games_time');
+          window.location.href = window.location.pathname + '?reset=' + Date.now();
         });
       }
     });

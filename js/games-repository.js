@@ -383,7 +383,7 @@ const RAW_GAMES_DATABASE = [
     platforms: ["ps5", "xbox", "pc"],
     sizeGB: 150,
     rating: 5.0,
-    img: "https://images.alphacoders.com/134/1342618.jpeg",
+    img: "img/gta.jpg",
     desc: "La evolución definitiva del mundo abierto en Vice City y el estado de Leonida con Lucia y Jason. Gráficos y simulación hiperrealista.",
     features: ["Ray Tracing", "Mundo Abierto", "4K HDR"]
   },
@@ -635,7 +635,7 @@ const RAW_GAMES_DATABASE = [
     platforms: ["switch"],
     sizeGB: 16,
     rating: 5.0,
-    img: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/library_hero.jpg",
+    img: "https://images.igdb.com/igdb/image/upload/t_cover_big/co5vmg.jpg",
     desc: "Link surca los cielos y las profundidades de Hyrule construyendo vehículos e ingenios mecánicos con Ultramano y Combinación.",
     features: ["Física Emergente", "Islas Celestes", "Exclusivo Nintendo"]
   },
@@ -647,7 +647,7 @@ const RAW_GAMES_DATABASE = [
     platforms: ["pc", "ps5"],
     sizeGB: 70,
     rating: 4.7,
-    img: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg",
+    img: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/553850/header.jpg",
     desc: "Lucha por la Democracia Gestionada en una guerra galáctica interconectada contra Autómatas y Termínidos con amigos.",
     features: ["Guerra Galáctica en Vivo", "Estratagemas Épicas", "Crossplay"]
   },
@@ -659,7 +659,7 @@ const RAW_GAMES_DATABASE = [
     platforms: ["ps5"],
     sizeGB: 85,
     rating: 4.9,
-    img: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2215430/library_hero.jpg",
+    img: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2215430/header.jpg",
     desc: "Atsu recorre las tierras salvajes del Monte Yōtei en 1603. La esperada secuela de Ghost of Tsushima por Sucker Punch.",
     features: ["Exclusivo PS5", "DualSense Inmersivo", "Japón Feudal"]
   }
@@ -907,56 +907,106 @@ class CatalogController {
   }
 }
 
-// Inicialización Global
-document.addEventListener('DOMContentLoaded', async () => {
+/**
+ * Carga enriquecida en segundo plano con caché en sessionStorage y timeout de 3.5s.
+ * Garantiza que la página cargue en 0ms y nunca se quede colgada si la API externa está lenta.
+ * @param {GameRepository} repo
+ * @param {CatalogController} controller
+ */
+async function fetchLiveGamesInBackground(repo, controller) {
+  const CACHE_KEY = 'hunter_cached_api_games';
+  const CACHE_TIME_KEY = 'hunter_cached_api_games_time';
+  const CACHE_TTL = 30 * 60 * 1000; // 30 minutos
+
+  // 1. Intentar cargar desde caché de sesión para arranque instantáneo (0ms)
+  try {
+    const cachedData = sessionStorage.getItem(CACHE_KEY);
+    const cachedTime = sessionStorage.getItem(CACHE_TIME_KEY);
+    if (cachedData && cachedTime && (Date.now() - parseInt(cachedTime, 10) < CACHE_TTL)) {
+      const parsed = JSON.parse(cachedData);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        repo.loadAll(parsed);
+        controller.render();
+        console.info(`[HunterGames] ⚡ ${parsed.length} títulos en vivo cargados instantáneamente desde caché.`);
+        return;
+      }
+    }
+  } catch (e) {
+    console.warn('[HunterGames] Error leyendo caché local:', e);
+  }
+
+  // 2. Si no hay caché o caducó, consultar CheapShark API con timeout de seguridad (3.5s)
+  try {
+    const abortCtrl = new AbortController();
+    const timeoutId = setTimeout(() => abortCtrl.abort(), 3500);
+
+    const response = await fetch('https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=50&sortBy=Metacritic&AAA=1', {
+      signal: abortCtrl.signal
+    });
+    clearTimeout(timeoutId);
+
+    if (response.ok) {
+      const liveGames = await response.json();
+      const existingTitles = new Set(repo.getAll().map(g => g.title.toLowerCase()));
+      
+      const apiGames = liveGames
+        .filter(g => g.steamAppID && !existingTitles.has(g.title.toLowerCase()))
+        .slice(0, 24)
+        .map((g, index) => {
+          return {
+            id: 1000 + index,
+            title: g.title,
+            year: new Date(g.releaseDate * 1000).getFullYear() || 2024,
+            genres: [['accion', 'rpg', 'aventura', 'disparos'][Math.floor(Math.random() * 4)]],
+            platforms: ['pc'],
+            sizeGB: Math.floor(Math.random() * 50) + 15,
+            rating: parseFloat(g.dealRating) || 4.5,
+            img: `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${g.steamAppID}/header.jpg`,
+            desc: `Juego aclamado por la crítica con Metascore de ${g.metacriticScore}. Adquiérelo a $${g.salePrice} (Antes $${g.normalPrice}).`,
+            features: ['Singleplayer', 'API Data', 'Metacritic'],
+            price: parseFloat(g.salePrice) || 39.99
+          };
+        });
+
+      if (apiGames.length > 0) {
+        repo.loadAll(apiGames);
+        controller.render();
+        
+        // Guardar en sesión para cargas inmediatas posteriores
+        try {
+          sessionStorage.setItem(CACHE_KEY, JSON.stringify(apiGames));
+          sessionStorage.setItem(CACHE_TIME_KEY, Date.now().toString());
+        } catch (e) {}
+        console.info(`[HunterGames] 🌐 ${apiGames.length} juegos en vivo añadidos y cacheados exitosamente.`);
+      }
+    }
+  } catch (e) {
+    if (e.name === 'AbortError') {
+      console.warn('[HunterGames] ⏱️ Timeout en API externa (3.5s). Se mantiene la base de datos local fluida.');
+    } else {
+      console.warn('[HunterGames] Error al sincronizar API externa:', e);
+    }
+  }
+}
+
+// Inicialización Global Inmediata (0ms Latencia)
+document.addEventListener('DOMContentLoaded', () => {
   try {
     const repo = new GameRepository();
     repo.loadAll(RAW_GAMES_DATABASE);
-    
-    // Fetch live games from CheapShark API to expand the DB
-    try {
-      const response = await fetch('https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=50&sortBy=Metacritic&AAA=1');
-      if (response.ok) {
-        const liveGames = await response.json();
-        const existingTitles = new Set(repo.getAll().map(g => g.title.toLowerCase()));
-        
-        const apiGames = liveGames
-          .filter(g => g.steamAppID && !existingTitles.has(g.title.toLowerCase()))
-          .slice(0, 30)
-          .map((g, index) => {
-            return {
-              id: 1000 + index, // Ensure unique IDs
-              title: g.title,
-              year: new Date(g.releaseDate * 1000).getFullYear() || 2024,
-              genres: ['accion', 'rpg', 'aventura', 'disparos'][Math.floor(Math.random() * 4)],
-              platforms: ['pc'],
-              sizeGB: Math.floor(Math.random() * 50) + 10,
-              rating: parseFloat(g.dealRating) || 4.5,
-              img: `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${g.steamAppID}/header.jpg`,
-              desc: `Juego aclamado por la crítica con Metascore de ${g.metacriticScore}. Adquiérelo a $${g.salePrice} (Antes $${g.normalPrice}).`,
-              features: ['Singleplayer', 'API Data', 'Metacritic'],
-              price: parseFloat(g.salePrice) || 39.99
-            };
-        });
-        
-        // Transform single genre string to array for consistency with RAW_GAMES_DATABASE
-        apiGames.forEach(g => { g.genres = [g.genres]; });
-        repo.loadAll(apiGames);
-        console.info(`[HunterGames] ${apiGames.length} juegos en vivo añadidos desde API.`);
-      }
-    } catch (e) {
-      console.warn('[HunterGames] No se pudo cargar la API de juegos:', e);
-    }
-
     window.hunterGamesRepo = repo;
 
     const controller = new CatalogController(repo);
     controller.init();
     window.hunterCatalogController = controller;
 
-    console.info(`[HunterGames] Repositorio POO inicializado exitosamente con ${repo.getAll().length} títulos AAA.`);
+    console.info(`[HunterGames] 🚀 Catálogo cargado instantáneamente con ${repo.getAll().length} títulos AAA base.`);
+
+    // Sincronización asíncrona no bloqueante
+    fetchLiveGamesInBackground(repo, controller);
   } catch (err) {
     console.error('[HunterGames] Fallo en la inicialización:', err);
   }
 });
+
 
